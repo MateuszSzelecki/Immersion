@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Immersion" parent="Theme.MaterialComponents.DayNight">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">#001970</item>
+        <item name="colorOnPrimary">#000051</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorOnPrimary</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- colorPrimary --> <!-- treść w toolbarze, zaznaczony tab w tabLayout -->
+    <!-- colorPrimaryVariant --> <!-- tło fragmentów -->
+    <!-- colorOnPrimary --> <!-- tło toolbara, tło tabLayout, statusBar -->
+
+</resources>
