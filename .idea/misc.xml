@@ -23,6 +23,8 @@
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/fragment_friends.xml" value="0.25" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/fragment_home.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/fragment_message.xml" value="0.25" />
+        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_item.xml" value="0.4" />
+        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_item_profile.xml" value="0.1" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/item_flag_navigation_menu.xml" value="0.25" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/item_navigation_header.xml" value="0.25" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/main_navigation_view.xml" value="0.20521590423257802" />
@@ -53,7 +55,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.536" />
+        <option name="scale" value="0.4" />
       </ProjectState>
     </option>
   </component>
