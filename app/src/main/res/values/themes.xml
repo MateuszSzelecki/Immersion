@@ -16,7 +16,7 @@
     </style>
 
     <!-- colorPrimary -->
-    <!-- treść w toolbarze, zaznaczony tab w tabLayout, treść navigationView -->
+    <!-- treść w toolbarze, zaznaczony tab w tabLayout, treść navigationView, imię oraz czas w poście -->
 
     <!-- colorPrimaryVariant -->
     <!-- tło fragmentów, tło addLanguageActivity -->
