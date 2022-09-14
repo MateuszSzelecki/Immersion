@@ -1,6 +1,5 @@
 package com.szelecki.immersion.fragments;
 
-import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,16 +8,12 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.szelecki.immersion.R;
-import com.szelecki.immersion.Utils;
 import com.szelecki.immersion.adapters.FlashcardsAdapter;
 import com.szelecki.immersion.adapters.FlashcardsAdapterInterface;
-import com.szelecki.immersion.models.LanguagesEnum;
 import com.szelecki.immersion.models.ModelUser;
 import com.szelecki.immersion.models.ModelWord;
 import com.szelecki.immersion.viewModels.FlashcardsFragmentViewModel;

@@ -1,6 +1,6 @@
 package com.szelecki.immersion;
 
-import com.szelecki.immersion.models.LanguagesEnum;
+import com.szelecki.immersion.models.EnumLanguages;
 
 public class Utils {
 
@@ -57,21 +57,21 @@ public class Utils {
         }
     }
 
-    public static LanguagesEnum setupChangedLanguage(String name) {
+    public static EnumLanguages setupChangedLanguage(String name) {
         int image = 0;
         switch (name) {
-            case "danish": return LanguagesEnum.DANISH;
-            case "english": return LanguagesEnum.ENGLISH;
-            case "finnish": return LanguagesEnum.FINNISH;
-            case "french": return LanguagesEnum.FRENCH;
-            case "german": return LanguagesEnum.GERMAN;
-            case "greek": return LanguagesEnum.GREEK;
-            case "italian": return LanguagesEnum.ITALIAN;
-            case "norwegian": return LanguagesEnum.NORWEGIAN;
-            case "polish": return LanguagesEnum.POLISH;
-            case "spanish": return LanguagesEnum.SPANISH;
-            case "swedish": return LanguagesEnum.SWEDISH;
-            default: return LanguagesEnum.DEFAULT;
+            case "danish": return EnumLanguages.DANISH;
+            case "english": return EnumLanguages.ENGLISH;
+            case "finnish": return EnumLanguages.FINNISH;
+            case "french": return EnumLanguages.FRENCH;
+            case "german": return EnumLanguages.GERMAN;
+            case "greek": return EnumLanguages.GREEK;
+            case "italian": return EnumLanguages.ITALIAN;
+            case "norwegian": return EnumLanguages.NORWEGIAN;
+            case "polish": return EnumLanguages.POLISH;
+            case "spanish": return EnumLanguages.SPANISH;
+            case "swedish": return EnumLanguages.SWEDISH;
+            default: return EnumLanguages.DEFAULT;
         }
     }
 }

@@ -4,13 +4,8 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.MutableLiveData;
 
-import com.szelecki.immersion.models.LanguagesEnum;
-import com.szelecki.immersion.models.ModelLanguageStatistic;
 import com.szelecki.immersion.room.LanguageStatisticRepository;
-
-import java.util.ArrayList;
 
 public class AddLanguageActivityViewModel extends AndroidViewModel {
 

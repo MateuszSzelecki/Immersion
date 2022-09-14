@@ -7,7 +7,7 @@ public class ModelUser extends Application {
     private String surname;
     private String uid;
     private String imageURL;
-    private LanguagesEnum language;
+    private EnumLanguages language;
 
     private static ModelUser instance;
 
@@ -53,11 +53,11 @@ public class ModelUser extends Application {
         this.imageURL = imageURL;
     }
 
-    public LanguagesEnum getLanguage() {
+    public EnumLanguages getLanguage() {
         return language;
     }
 
-    public void setLanguage(LanguagesEnum language) {
+    public void setLanguage(EnumLanguages language) {
         this.language = language;
     }
 }

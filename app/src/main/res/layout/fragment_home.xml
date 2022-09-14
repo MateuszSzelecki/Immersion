@@ -8,6 +8,9 @@
     android:background="?attr/colorPrimaryVariant"
     android:padding="25dp">
 
-    <include layout="@layout/home_card_item" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mainRecyclerViewHomeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

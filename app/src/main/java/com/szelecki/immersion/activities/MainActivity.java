@@ -15,13 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.ColorSpace;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -32,7 +28,7 @@ import com.szelecki.immersion.Utils;
 import com.szelecki.immersion.adapters.NavigationViewFriendsAdapter;
 import com.szelecki.immersion.adapters.OnClickLanguageItemInterface;
 import com.szelecki.immersion.adapters.SheetDialogAdapter;
-import com.szelecki.immersion.models.LanguagesEnum;
+import com.szelecki.immersion.models.EnumLanguages;
 import com.szelecki.immersion.models.ModelFriendStatistic;
 import com.szelecki.immersion.models.ModelLanguageStatistic;
 import com.szelecki.immersion.adapters.NavigationViewLanguagesAdapter;
@@ -43,7 +39,6 @@ import com.szelecki.immersion.fragments.FragmentFriends;
 import com.szelecki.immersion.fragments.FragmentHome;
 import com.szelecki.immersion.fragments.FragmentMessage;
 import com.szelecki.immersion.models.ModelUser;
-import com.szelecki.immersion.models.ModelWord;
 import com.szelecki.immersion.viewModels.MainActivityViewModel;
 
 import java.util.ArrayList;
@@ -150,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
             public void onChanged(ArrayList<ModelLanguageStatistic> modelLanguageStatistics) {
                 languages = modelLanguageStatistics;
                 languagesAdapter.setLanguages(languages);
-                if (languages.stream().noneMatch(s -> s.getName().equals(user.getLanguage().getDescription())) || user.getLanguage() == LanguagesEnum.DEFAULT || user.getLanguage() == null) {
+                if (languages.stream().noneMatch(s -> s.getName().equals(user.getLanguage().getDescription())) || user.getLanguage() == EnumLanguages.DEFAULT || user.getLanguage() == null) {
                     user.setLanguage(Utils.setupChangedLanguage(languages.get(0).getName()));
                 }
             }
@@ -190,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
 
     //metoda zapisująca nowe wartości dla obecnego języka użytkownika
     private void newStatisticsAndPref() {
-        if (user.getLanguage() != LanguagesEnum.DEFAULT) {
+        if (user.getLanguage() != EnumLanguages.DEFAULT) {
             String language = user.getLanguage().getDescription();
             preferences.edit().putString("userLanguage", language).apply();
             ModelLanguageStatistic model = languages.stream().filter(s -> s.getName().equals(language)).findFirst().get();

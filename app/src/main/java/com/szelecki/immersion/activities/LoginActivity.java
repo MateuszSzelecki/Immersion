@@ -1,7 +1,6 @@
 package com.szelecki.immersion.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -12,12 +11,9 @@ import android.widget.Button;
 
 import com.szelecki.immersion.R;
 import com.szelecki.immersion.Utils;
-import com.szelecki.immersion.models.LanguagesEnum;
+import com.szelecki.immersion.models.EnumLanguages;
 import com.szelecki.immersion.models.ModelUser;
-import com.szelecki.immersion.viewModels.FlashcardsFragmentViewModel;
 import com.szelecki.immersion.viewModels.MainActivityViewModel;
-
-import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 user.setFirstname("Mateusz");
                 user.setSurname("Szelecki");
-                LanguagesEnum languagesEnum = Utils.setupChangedLanguage(preferences.getString("userLanguage", "default"));
-                user.setLanguage(languagesEnum);
+                EnumLanguages enumLanguages = Utils.setupChangedLanguage(preferences.getString("userLanguage", "default"));
+                user.setLanguage(enumLanguages);
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }

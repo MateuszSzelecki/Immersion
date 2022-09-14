@@ -13,11 +13,10 @@ import com.szelecki.immersion.R;
 import com.szelecki.immersion.Utils;
 import com.szelecki.immersion.adapters.AddLanguageAdapter;
 import com.szelecki.immersion.adapters.OnClickLanguageItemInterface;
-import com.szelecki.immersion.models.LanguagesEnum;
+import com.szelecki.immersion.models.EnumLanguages;
 import com.szelecki.immersion.models.ModelLanguageStatistic;
 import com.szelecki.immersion.models.ModelUser;
 import com.szelecki.immersion.viewModels.AddLanguageActivityViewModel;
-import com.szelecki.immersion.viewModels.MainActivityViewModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -59,20 +58,20 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
     }
 
     private void initLanguages() {
-        languages.add(setupLanguage(LanguagesEnum.DANISH)); representations.add(LanguagesEnum.DANISH.getRepresentation());
-        languages.add(setupLanguage(LanguagesEnum.ENGLISH)); representations.add(LanguagesEnum.ENGLISH.getRepresentation());
-        languages.add(setupLanguage(LanguagesEnum.FINNISH)); representations.add(LanguagesEnum.FINNISH.getRepresentation());
-        languages.add(setupLanguage(LanguagesEnum.FRENCH)); representations.add(LanguagesEnum.FRENCH.getRepresentation());
-        languages.add(setupLanguage(LanguagesEnum.GERMAN)); representations.add(LanguagesEnum.GERMAN.getRepresentation());
-        languages.add(setupLanguage(LanguagesEnum.GREEK)); representations.add(LanguagesEnum.GREEK.getRepresentation());
-        languages.add(setupLanguage(LanguagesEnum.ITALIAN)); representations.add(LanguagesEnum.ITALIAN.getRepresentation());
-        languages.add(setupLanguage(LanguagesEnum.NORWEGIAN)); representations.add(LanguagesEnum.NORWEGIAN.getRepresentation());
-        languages.add(setupLanguage(LanguagesEnum.POLISH)); representations.add(LanguagesEnum.POLISH.getRepresentation());
-        languages.add(setupLanguage(LanguagesEnum.SPANISH)); representations.add(LanguagesEnum.SPANISH.getRepresentation());
-        languages.add(setupLanguage(LanguagesEnum.SWEDISH)); representations.add(LanguagesEnum.SWEDISH.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.DANISH)); representations.add(EnumLanguages.DANISH.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.ENGLISH)); representations.add(EnumLanguages.ENGLISH.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.FINNISH)); representations.add(EnumLanguages.FINNISH.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.FRENCH)); representations.add(EnumLanguages.FRENCH.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.GERMAN)); representations.add(EnumLanguages.GERMAN.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.GREEK)); representations.add(EnumLanguages.GREEK.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.ITALIAN)); representations.add(EnumLanguages.ITALIAN.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.NORWEGIAN)); representations.add(EnumLanguages.NORWEGIAN.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.POLISH)); representations.add(EnumLanguages.POLISH.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.SPANISH)); representations.add(EnumLanguages.SPANISH.getRepresentation());
+        languages.add(setupLanguage(EnumLanguages.SWEDISH)); representations.add(EnumLanguages.SWEDISH.getRepresentation());
     }
 
-    private ModelLanguageStatistic setupLanguage(LanguagesEnum language) {
+    private ModelLanguageStatistic setupLanguage(EnumLanguages language) {
         String name = language.getDescription();
         int image = Utils.setupLanguageImage(name);
         int words = 0;

@@ -1,6 +1,6 @@
 package com.szelecki.immersion.models;
 
-public enum LanguagesEnum {
+public enum EnumLanguages {
     DANISH("danish", "Dansk"),
     ENGLISH("english", "English"),
     FINNISH("finnish", "Suomalainen"),
@@ -17,7 +17,7 @@ public enum LanguagesEnum {
     private String description;
     private String representation;
 
-    LanguagesEnum(String description, String representation) {
+    EnumLanguages(String description, String representation) {
         this.description = description;
         this.representation = representation;
     }
