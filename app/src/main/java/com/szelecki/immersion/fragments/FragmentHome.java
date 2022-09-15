@@ -1,5 +1,6 @@
 package com.szelecki.immersion.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,23 +13,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.szelecki.immersion.R;
-import com.szelecki.immersion.adapters.ExternalPostsAdapter;
-import com.szelecki.immersion.models.ModelPostFirebase;
+import com.szelecki.immersion.activities.MainActivity;
+import com.szelecki.immersion.adapters.PostsAdapter;
+import com.szelecki.immersion.adapters.PostsAdapterInterface;
+import com.szelecki.immersion.models.ModelPostFromFirebase;
+import com.szelecki.immersion.models.ModelUser;
 import com.szelecki.immersion.viewModels.HomeFragmentViewModel;
-import com.szelecki.immersion.viewModels.MainActivityViewModel;
 
 import java.util.ArrayList;
 
-public class FragmentHome extends Fragment {
+public class FragmentHome extends Fragment implements PostsAdapterInterface {
 
     RecyclerView mainRecyclerView;
 
-    ArrayList<ArrayList<ModelPostFirebase>> posts;
+    ArrayList<ModelPostFromFirebase> posts;
     ArrayList<String> displayedPostsId;
 
     HomeFragmentViewModel viewModel;
+    ModelUser user;
 
-    ExternalPostsAdapter externalAdapter;
+    PostsAdapter postsAdapter;
 
     public FragmentHome() {}
 
@@ -40,11 +44,16 @@ public class FragmentHome extends Fragment {
         mainRecyclerView = view.findViewById(R.id.mainRecyclerViewHomeFragment);
 
         viewModel = new ViewModelProvider(this).get(HomeFragmentViewModel.class);
+        user = ModelUser.getInstance();
 
-        viewModel.getNextTenPosts(displayedPostsId).observe(getViewLifecycleOwner(), new Observer<ArrayList<ModelPostFirebase>>() {
+        posts = new ArrayList<>(); displayedPostsId = new ArrayList<>();
+        initRecyclerViewPosts();
+
+        viewModel.getNextTenPosts(user.getLanguage().getDescription()).observe(getViewLifecycleOwner(), new Observer<ArrayList<ModelPostFromFirebase>>() {
             @Override
-            public void onChanged(ArrayList<ModelPostFirebase> modelPostFirebases) {
-                posts.add(modelPostFirebases);
+            public void onChanged(ArrayList<ModelPostFromFirebase> modelPostFromFirebases) {
+                postsAdapter.setPosts(modelPostFromFirebases);
+                viewModel.addReceivedPost(modelPostFromFirebases, user.getLanguage().getDescription());
             }
         });
 
@@ -52,8 +61,14 @@ public class FragmentHome extends Fragment {
     }
 
     private void initRecyclerViewPosts() {
-        externalAdapter = new ExternalPostsAdapter(posts, getContext());
-        mainRecyclerView.setAdapter(externalAdapter);
+        postsAdapter = new PostsAdapter(posts, getContext());
+        postsAdapter.setPostsAdapterInterface(this);
+        mainRecyclerView.setAdapter(postsAdapter);
         mainRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    @Override
+    public void loadMore() {
+        ((MainActivity)getActivity()).replaceFragment(new FragmentHome());
     }
 }

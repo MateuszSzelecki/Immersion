@@ -8,8 +8,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.szelecki.immersion.models.ModelPostFirebase;
+import com.szelecki.immersion.models.ModelPostFromFirebase;
+import com.szelecki.immersion.models.ModelPostToFirebase;
 import com.szelecki.immersion.models.ModelReceivedPost;
+import com.szelecki.immersion.models.ModelUser;
+import com.szelecki.immersion.room.PostFromFirebaseRepository;
 import com.szelecki.immersion.room.ReceivedPostRepository;
 
 import java.util.ArrayList;
@@ -17,30 +20,26 @@ import java.util.ArrayList;
 public class HomeFragmentViewModel extends AndroidViewModel {
 
     ReceivedPostRepository receivedPostRepository;
-    FirebaseDatabase database;
-    DatabaseReference reference;
+    PostFromFirebaseRepository postFromFirebaseRepository;
 
     public HomeFragmentViewModel(@NonNull Application application) {
         super(application);
-
         receivedPostRepository = new ReceivedPostRepository(application);
-        database = FirebaseDatabase.getInstance();
-        reference = database.getReference("posts");
+        postFromFirebaseRepository = new PostFromFirebaseRepository(application);
     }
 
-    private MutableLiveData<ArrayList<String>> receivedPostsIdViewModel = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<ModelPostFirebase>> postsViewModel = new MutableLiveData<>();
-    private ArrayList<String> temporary = new ArrayList<>();
+    private MutableLiveData<ArrayList<ModelPostFromFirebase>> postsViewModel = new MutableLiveData<>();
+    private ArrayList<String> receivedPostId = new ArrayList<>();
 
-    public MutableLiveData<ArrayList<String>> getInitialReceivedPostsId(String language) {
+    public MutableLiveData<ArrayList<ModelPostFromFirebase>> getNextTenPosts(String language) {
         for (ModelReceivedPost model : receivedPostRepository.getReceivedPosts(language)) {
-            temporary.add(model.getPost_id());
+            receivedPostId.add(model.getPostId());
         }
-        receivedPostsIdViewModel.setValue(temporary);
-        return receivedPostsIdViewModel;
+        postsViewModel.setValue(postFromFirebaseRepository.getPostsFromFirebase(language, receivedPostId));
+        return postsViewModel;
     }
 
-    public MutableLiveData<ArrayList<ModelPostFirebase>> getNextTenPosts(ArrayList<String> displayedPostId) {
-        return postsViewModel;
+    public void addReceivedPost(ArrayList<ModelPostFromFirebase> posts, String language) {
+        receivedPostRepository.insertReceivedPost(posts, language);
     }
 }

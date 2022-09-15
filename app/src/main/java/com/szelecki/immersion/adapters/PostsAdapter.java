@@ -12,16 +12,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 import com.szelecki.immersion.R;
-import com.szelecki.immersion.models.ModelPostFirebase;
+import com.szelecki.immersion.models.ModelPostFromFirebase;
 
 import java.util.ArrayList;
 
-public class InternalPostsAdapter extends RecyclerView.Adapter<InternalPostsAdapter.PostsViewHolder> {
+public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHolder> {
 
-    private ArrayList<ModelPostFirebase> models;
+    private ArrayList<ModelPostFromFirebase> models;
     private Context context;
 
-    public InternalPostsAdapter(ArrayList<ModelPostFirebase> models, Context context) {
+    PostsAdapterInterface listener;
+
+    public void setPostsAdapterInterface(PostsAdapterInterface listener) {
+        this.listener = listener;
+    }
+
+    public PostsAdapter(ArrayList<ModelPostFromFirebase> models, Context context) {
         this.models = models;
         this.context = context;
     }
@@ -36,15 +42,19 @@ public class InternalPostsAdapter extends RecyclerView.Adapter<InternalPostsAdap
 
     @Override
     public void onBindViewHolder(@NonNull PostsViewHolder holder, int position) {
-        ModelPostFirebase model = models.get(position);
-        holder.name.setText(model.getName());
+        ModelPostFromFirebase model = models.get(position);
+        holder.name.setText(model.getUserName());
         holder.timeAgo.setText(model.getTimeAgo());
         holder.content.setText(model.getContentText());
         holder.likes.setText(String.valueOf(model.getLikesAmount()));
         Picasso.get().load(model.getProfileImageURL()).into(holder.profileImage);
         //TODO: placeholder
-        if (model.getContentImageURL() == ".") {
+        if (model.getContentImageURL().equals(".")) {
             holder.contentImage.setVisibility(View.GONE);
+        }
+
+        if (position == 9) {
+            holder.loadMore.setVisibility(View.VISIBLE);
         }
     }
 
@@ -54,7 +64,7 @@ public class InternalPostsAdapter extends RecyclerView.Adapter<InternalPostsAdap
     }
 
     class PostsViewHolder extends RecyclerView.ViewHolder {
-        TextView name, timeAgo, content, likes, comments;
+        TextView name, timeAgo, content, likes, comments, loadMore;
         ImageView profileImage, contentImage;
 
         public PostsViewHolder(@NonNull View itemView) {
@@ -64,8 +74,20 @@ public class InternalPostsAdapter extends RecyclerView.Adapter<InternalPostsAdap
             content = itemView.findViewById(R.id.contentHomePostItem);
             likes = itemView.findViewById(R.id.likesHomePostItem);
             comments = itemView.findViewById(R.id.commentsHomePostItem);
+            loadMore = itemView.findViewById(R.id.loadMoreTextHomePostItem);
             profileImage = itemView.findViewById(R.id.profileImageHomePostItem);
             contentImage = itemView.findViewById(R.id.contentImageHomePostItem);
+
+            loadMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.loadMore();
+                }
+            });
         }
+    }
+
+    public void setPosts(ArrayList<ModelPostFromFirebase> models) {
+        this.models = models;
     }
 }

@@ -1,12 +1,12 @@
 package com.szelecki.immersion.models;
 
-public class ModelPostFirebase {
+public class ModelPostToFirebase {
 
-    private String name;
-    private String profileImageURL;
+    private String postId;
+    private String language;
+    private String userName;
     private String authentication;
     private long published;
-    private String timeAgo;
     private String contentText;
     private String contentImageURL;
     private String category1;
@@ -15,9 +15,10 @@ public class ModelPostFirebase {
     private int likesAmount;
     private Object comments;
 
-    //wstawiane
-    public ModelPostFirebase(String name, String authentication, long published, String contentText, String contentImageURL, String category1, String category2, String category3, Object comments) {
-        this.name = name;
+    public ModelPostToFirebase(String language, String userName, String authentication, long published, String contentText, String contentImageURL, String category1, String category2, String category3, Object comments) {
+        this.postId = language.substring(0,3) + authentication.substring(0,3) + String.valueOf(published);
+        this.language = language;
+        this.userName = userName;
         this.authentication = authentication;
         this.published = published;
         this.contentText = contentText;
@@ -29,33 +30,36 @@ public class ModelPostFirebase {
         this.comments = comments;
     }
 
-    //do RecyclerView
-    public ModelPostFirebase(String name, String profileImageURL, String timeAgo, String contentText, String contentImageURL, String category1, String category2, String category3, int likesAmount) {
-        this.name = name;
-        this.profileImageURL = profileImageURL;
-        this.timeAgo = timeAgo;
-        this.contentText = contentText;
-        this.contentImageURL = contentImageURL;
-        this.category1 = category1;
-        this.category2 = category2;
-        this.category3 = category3;
-        this.likesAmount = likesAmount;
+    public String getPostId() {
+        return postId;
     }
 
-    public String getName() {
-        return name;
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getLanguage() {
+        return language;
     }
 
-    public String getProfileImageURL() {
-        return profileImageURL;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public void setProfileImageURL(String profileImageURL) {
-        this.profileImageURL = profileImageURL;
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getAuthentication() {
+        return authentication;
+    }
+
+    public void setAuthentication(String authentication) {
+        this.authentication = authentication;
     }
 
     public long getPublished() {
@@ -120,21 +124,5 @@ public class ModelPostFirebase {
 
     public void setComments(Object comments) {
         this.comments = comments;
-    }
-
-    public String getAuthentication() {
-        return authentication;
-    }
-
-    public void setAuthentication(String authentication) {
-        this.authentication = authentication;
-    }
-
-    public String getTimeAgo() {
-        return timeAgo;
-    }
-
-    public void setTimeAgo(String timeAgo) {
-        this.timeAgo = timeAgo;
     }
 }

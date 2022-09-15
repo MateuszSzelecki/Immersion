@@ -11,7 +11,7 @@ public class ModelReceivedPost {
 
     @ColumnInfo(name = "post_id")
     @PrimaryKey
-    @NonNull private String post_id;
+    @NonNull private String postId;
 
     @ColumnInfo(name = "language")
     private String language;
@@ -19,17 +19,17 @@ public class ModelReceivedPost {
     public ModelReceivedPost() {}
 
     @Ignore
-    public ModelReceivedPost(@NonNull String post_id, String language) {
-        this.post_id = post_id;
+    public ModelReceivedPost(String postId, String language) {
+        this.postId = postId;
         this.language = language;
     }
 
-    public String getPost_id() {
-        return post_id;
+    public String getPostId() {
+        return postId;
     }
 
-    public void setPost_id(String post_id) {
-        this.post_id = post_id;
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 
     public String getLanguage() {

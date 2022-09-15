@@ -2,6 +2,7 @@ package com.szelecki.immersion.room;
 
 import android.app.Application;
 
+import com.szelecki.immersion.models.ModelPostFromFirebase;
 import com.szelecki.immersion.models.ModelReceivedPost;
 import com.szelecki.immersion.models.ModelWord;
 
@@ -47,5 +48,17 @@ public class ReceivedPostRepository {
             }
             return list;
         }
+    }
+
+    public void insertReceivedPost(ArrayList<ModelPostFromFirebase> newPosts, String language) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                for (ModelPostFromFirebase model : newPosts) {
+                    receivedPostDAO.addReceivedPost(new ModelReceivedPost(model.getPostId(), language));
+                }
+            }
+        });
     }
 }
