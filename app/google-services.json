@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1026326469098",
+    "firebase_url": "https://immersiondatabase-default-rtdb.firebaseio.com",
+    "project_id": "immersiondatabase",
+    "storage_bucket": "immersiondatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026326469098:android:adc3ad9ce234e24966ba93",
+        "android_client_info": {
+          "package_name": "com.szelecki.immersion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026326469098-akq6anhj8os0g7t2uchv3pvb5bpl1r9l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.szelecki.immersion",
+            "certificate_hash": "506911021710791e34cb4599c4b30e364507a79c"
+          }
+        },
+        {
+          "client_id": "1026326469098-cgqp3btqlm498e2gg0riu2an36d67lk1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiyfw8kWNEdqwkoKUCOz0l8gSJDQ32HJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026326469098-cgqp3btqlm498e2gg0riu2an36d67lk1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

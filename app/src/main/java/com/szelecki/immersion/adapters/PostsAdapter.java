@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
 import com.szelecki.immersion.R;
 import com.szelecki.immersion.models.ModelPostFromFirebase;
 
@@ -47,7 +46,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
         holder.timeAgo.setText(model.getTimeAgo());
         holder.content.setText(model.getContentText());
         holder.likes.setText(String.valueOf(model.getLikesAmount()));
-        Picasso.get().load(model.getProfileImageURL()).into(holder.profileImage);
+//        Picasso.get().load(model.getProfileImageURL()).into(holder.profileImage);
         //TODO: placeholder
         if (model.getContentImageURL().equals(".")) {
             holder.contentImage.setVisibility(View.GONE);

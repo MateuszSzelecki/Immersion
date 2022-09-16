@@ -1,8 +1,6 @@
 package com.szelecki.immersion.models;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -10,7 +8,7 @@ import androidx.room.PrimaryKey;
 
 
 @Entity(tableName = "language_statistics")
-public class ModelLanguageStatistic extends BaseObservable {
+public class ModelLanguageStatistic {
 
     @ColumnInfo(name = "name")
     @PrimaryKey

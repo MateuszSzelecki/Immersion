@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.szelecki.immersion.R;
 import com.szelecki.immersion.Utils;
 import com.szelecki.immersion.models.EnumLanguages;
@@ -41,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                 user.setSurname("Szelecki");
                 EnumLanguages enumLanguages = Utils.setupChangedLanguage(preferences.getString("userLanguage", "default"));
                 user.setLanguage(enumLanguages);
+                user.setAuthentication("12345");
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }

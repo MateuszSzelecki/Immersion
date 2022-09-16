@@ -6,6 +6,7 @@ public class ModelPostToFirebase {
     private String language;
     private String userName;
     private String authentication;
+    private String profileImageURL;
     private long published;
     private String contentText;
     private String contentImageURL;

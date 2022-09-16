@@ -39,6 +39,35 @@ public class Utils {
         return ago;
     }
 
+    public static String getExactTimeAgo(long started, long now) {
+        long diff = now - started;
+        String ago = "";
+
+        if (diff < 15 * MINUTE_MILLIS) {
+            ago = "moments ago";
+        } else if (diff < 0.5 * HOUR_MILLIS) {
+            ago = "15 minutes ago";
+        } else if (diff < HOUR_MILLIS) {
+            ago = "half hour ago";
+        } else if (diff < 2 * HOUR_MILLIS) {
+            ago = "an hour ago";
+        } else if (diff < 24 * HOUR_MILLIS) {
+            ago = String.valueOf(diff/HOUR_MILLIS) + " hours ago";
+        } else if (diff < DAY_MILLIS) {
+            ago = "today";
+        } else if (diff < 2 * DAY_MILLIS) {
+            ago = "yesterday";
+        } else if (diff < WEEK_MILLIS) {
+            ago = String.valueOf(diff/DAY_MILLIS) + " days ago";
+        } else if (diff < 2 * WEEK_MILLIS) {
+            ago = "1 week ago";
+        } else {
+            ago = String.valueOf(diff/WEEK_MILLIS) + " weeks ago";
+        }
+
+        return ago;
+    }
+
     public static int setupLanguageImage(String name) {
         int image = 0;
         switch (name) {

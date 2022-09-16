@@ -3,6 +3,7 @@ package com.szelecki.immersion.models;
 import android.app.Application;
 
 public class ModelUser extends Application {
+    private String authentication;
     private String firstname;
     private String surname;
     private String uid;
@@ -19,6 +20,14 @@ public class ModelUser extends Application {
     }
 
     public ModelUser() {
+    }
+
+    public String getAuthentication() {
+        return authentication;
+    }
+
+    public void setAuthentication(String authentication) {
+        this.authentication = authentication;
     }
 
     public String getFirstname() {
