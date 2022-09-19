@@ -12,7 +12,7 @@ import com.szelecki.immersion.models.ModelFriendStatistic;
 import com.szelecki.immersion.models.ModelLanguageStatistic;
 import com.szelecki.immersion.models.ModelWord;
 
-@Database(entities = {ModelLanguageStatistic.class, ModelFriendStatistic.class, ModelWord.class}, version = 6)
+@Database(entities = {ModelLanguageStatistic.class, ModelFriendStatistic.class, ModelWord.class}, version = 7)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract LanguageStatisticDAO getLanguageStatisticDAO();

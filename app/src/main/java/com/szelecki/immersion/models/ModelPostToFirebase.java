@@ -2,12 +2,10 @@ package com.szelecki.immersion.models;
 
 public class ModelPostToFirebase {
 
-    private String postId;
-    private String language;
-    private String userName;
     private String authentication;
+    private String userName;
     private String profileImageURL;
-    private long published;
+    private long publishedDate;
     private String contentText;
     private String contentImageURL;
     private String category1;
@@ -16,43 +14,22 @@ public class ModelPostToFirebase {
     private int likesAmount;
     private Object comments;
 
-    public ModelPostToFirebase(String language, String userName, String authentication, long published, String contentText, String contentImageURL, String category1, String category2, String category3, Object comments) {
-        this.postId = language.substring(0,3) + authentication.substring(0,3) + String.valueOf(published);
-        this.language = language;
-        this.userName = userName;
+    public ModelPostToFirebase(String authentication, String userName, String profileImageURL, long publishedDate, String contentText, String contentImageURL, String category1, String category2, String category3) {
         this.authentication = authentication;
-        this.published = published;
+        this.userName = userName;
+        this.profileImageURL = profileImageURL;
+        this.publishedDate = publishedDate;
         this.contentText = contentText;
         this.contentImageURL = contentImageURL;
         this.category1 = category1;
         this.category2 = category2;
         this.category3 = category3;
         this.likesAmount = 0;
-        this.comments = comments;
+        this.comments = "";
     }
 
-    public String getPostId() {
-        return postId;
-    }
-
-    public void setPostId(String postId) {
-        this.postId = postId;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getPostId(String language) {
+        return language.substring(0,3) + this.authentication.substring(0,3) + String.valueOf(this.publishedDate);
     }
 
     public String getAuthentication() {
@@ -63,12 +40,28 @@ public class ModelPostToFirebase {
         this.authentication = authentication;
     }
 
-    public long getPublished() {
-        return published;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setPublished(long published) {
-        this.published = published;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getProfileImageURL() {
+        return profileImageURL;
+    }
+
+    public void setProfileImageURL(String profileImageURL) {
+        this.profileImageURL = profileImageURL;
+    }
+
+    public long getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(long publishedDate) {
+        this.publishedDate = publishedDate;
     }
 
     public String getContentText() {

@@ -1,5 +1,6 @@
 package com.szelecki.immersion;
 
+import com.szelecki.immersion.R;
 import com.szelecki.immersion.models.EnumLanguages;
 
 public class Utils {
@@ -43,12 +44,10 @@ public class Utils {
         long diff = now - started;
         String ago = "";
 
-        if (diff < 15 * MINUTE_MILLIS) {
+        if (diff < MINUTE_MILLIS) {
             ago = "moments ago";
-        } else if (diff < 0.5 * HOUR_MILLIS) {
-            ago = "15 minutes ago";
         } else if (diff < HOUR_MILLIS) {
-            ago = "half hour ago";
+            ago = String.valueOf(diff/MINUTE_MILLIS) + " minutes ago";
         } else if (diff < 2 * HOUR_MILLIS) {
             ago = "an hour ago";
         } else if (diff < 24 * HOUR_MILLIS) {

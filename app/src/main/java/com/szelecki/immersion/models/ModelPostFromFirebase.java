@@ -1,10 +1,10 @@
 package com.szelecki.immersion.models;
 
+import java.util.ArrayList;
+
 public class ModelPostFromFirebase {
 
-    private String postId;
     private String userName;
-    private String authentication;
     private String profileImageURL;
     private String timeAgo;
     private String contentText;
@@ -13,11 +13,10 @@ public class ModelPostFromFirebase {
     private String category2;
     private String category3;
     private int likesAmount;
+    private ArrayList<String> words;
 
-    public ModelPostFromFirebase(String postId, String userName, String authentication, String profileImageURL, String timeAgo, String contentText, String contentImageURL, String category1, String category2, String category3, int likesAmount) {
-        this.postId = postId;
+    public ModelPostFromFirebase(String userName, String profileImageURL, String timeAgo, String contentText, String contentImageURL, String category1, String category2, String category3, int likesAmount) {
         this.userName = userName;
-        this.authentication = authentication;
         this.profileImageURL = profileImageURL;
         this.timeAgo = timeAgo;
         this.contentText = contentText;
@@ -28,28 +27,12 @@ public class ModelPostFromFirebase {
         this.likesAmount = likesAmount;
     }
 
-    public String getPostId() {
-        return postId;
-    }
-
-    public void setPostId(String postId) {
-        this.postId = postId;
-    }
-
     public String getUserName() {
         return userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getAuthentication() {
-        return authentication;
-    }
-
-    public void setAuthentication(String authentication) {
-        this.authentication = authentication;
     }
 
     public String getProfileImageURL() {
@@ -114,5 +97,13 @@ public class ModelPostFromFirebase {
 
     public void setLikesAmount(int likesAmount) {
         this.likesAmount = likesAmount;
+    }
+
+    public ArrayList<String> getWords() {
+        return words;
+    }
+
+    public void setWords(ArrayList<String> words) {
+        this.words = words;
     }
 }

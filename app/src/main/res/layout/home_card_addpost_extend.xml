@@ -52,26 +52,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/likesHomePostItem"
+            android:id="@+id/selectImageHomeAddPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:drawableLeft="@drawable/ic_heart_contour"
-            android:drawablePadding="5dp"
-            android:fontFamily="@font/wellingtons_regular"
+            android:layout_marginEnd="20dp"
+            android:drawableLeft="@drawable/ic_select_image"
             android:gravity="center"
-            android:text="310"
-            android:textColor="@color/black"
-            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/commentsHomePostItem"
+            app:layout_constraintEnd_toStartOf="@+id/publishHomeAddPost"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/commentsHomePostItem"
+            android:id="@+id/publishHomeAddPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_comment"
+            android:drawableLeft="@drawable/ic_publish"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

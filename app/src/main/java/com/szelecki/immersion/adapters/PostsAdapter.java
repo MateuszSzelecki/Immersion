@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.szelecki.immersion.R;
@@ -19,12 +20,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
 
     private ArrayList<ModelPostFromFirebase> models;
     private Context context;
-
-    PostsAdapterInterface listener;
-
-    public void setPostsAdapterInterface(PostsAdapterInterface listener) {
-        this.listener = listener;
-    }
 
     public PostsAdapter(ArrayList<ModelPostFromFirebase> models, Context context) {
         this.models = models;
@@ -42,19 +37,29 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
     @Override
     public void onBindViewHolder(@NonNull PostsViewHolder holder, int position) {
         ModelPostFromFirebase model = models.get(position);
+
         holder.name.setText(model.getUserName());
         holder.timeAgo.setText(model.getTimeAgo());
         holder.content.setText(model.getContentText());
         holder.likes.setText(String.valueOf(model.getLikesAmount()));
-//        Picasso.get().load(model.getProfileImageURL()).into(holder.profileImage);
-        //TODO: placeholder
+        holder.category1.setText(model.getCategory1());
+        holder.category2.setText(model.getCategory2());
+        holder.category3.setText(model.getCategory3());
+
+        if (model.getWords().size() == 0) {
+            holder.recyclerViewWords.setVisibility(View.GONE);
+        } else {
+            PostWordsAdapter postWordsAdapter = new PostWordsAdapter(model.getWords(), context);
+            holder.recyclerViewWords.setOverScrollMode(View.OVER_SCROLL_NEVER);
+            holder.recyclerViewWords.setLayoutManager(new LinearLayoutManager(context));
+            holder.recyclerViewWords.setAdapter(postWordsAdapter);
+        }
+
         if (model.getContentImageURL().equals(".")) {
             holder.contentImage.setVisibility(View.GONE);
         }
 
-        if (position == 9) {
-            holder.loadMore.setVisibility(View.VISIBLE);
-        }
+        //TODO: zdjęcia
     }
 
     @Override
@@ -63,8 +68,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
     }
 
     class PostsViewHolder extends RecyclerView.ViewHolder {
-        TextView name, timeAgo, content, likes, comments, loadMore;
+        TextView name, timeAgo, content, likes, comments, category1, category2, category3;
         ImageView profileImage, contentImage;
+        RecyclerView recyclerViewWords;
 
         public PostsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,20 +79,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
             content = itemView.findViewById(R.id.contentHomePostItem);
             likes = itemView.findViewById(R.id.likesHomePostItem);
             comments = itemView.findViewById(R.id.commentsHomePostItem);
-            loadMore = itemView.findViewById(R.id.loadMoreTextHomePostItem);
+            category1 = itemView.findViewById(R.id.category1HomePostItem);
+            category2 = itemView.findViewById(R.id.category2HomePostItem);
+            category3 = itemView.findViewById(R.id.category3HomePostItem);
             profileImage = itemView.findViewById(R.id.profileImageHomePostItem);
             contentImage = itemView.findViewById(R.id.contentImageHomePostItem);
-
-            loadMore.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.loadMore();
-                }
-            });
+            recyclerViewWords = itemView.findViewById(R.id.recyclerViewWordsHomePostItem);
         }
-    }
-
-    public void setPosts(ArrayList<ModelPostFromFirebase> models) {
-        this.models = models;
     }
 }

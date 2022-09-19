@@ -11,10 +11,10 @@
             android:id="@+id/contentHomePostItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Når du hører Harley-Davidson går tankene fort til ikoniske motorsykler som ofte gjør seg bemerket når."
+            android:text="."
             android:fontFamily="@font/wellingtons_medium"
             android:textColor="@color/dark_grey"
-            android:textSize="15sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -2,13 +2,15 @@ package com.szelecki.immersion.models;
 
 import android.app.Application;
 
+import java.util.ArrayList;
+
 public class ModelUser extends Application {
     private String authentication;
     private String firstname;
     private String surname;
-    private String uid;
     private String imageURL;
     private EnumLanguages language;
+    private ArrayList<String> categories; //TODO: tablica modeli categories
 
     private static ModelUser instance;
 
@@ -44,14 +46,6 @@ public class ModelUser extends Application {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
     }
 
     public String getImageURL() {

@@ -1,10 +1,7 @@
 package com.szelecki.immersion.room;
 
 import android.app.Application;
-import android.os.Handler;
-import android.os.Looper;
 
-import com.szelecki.immersion.R;
 import com.szelecki.immersion.Utils;
 import com.szelecki.immersion.models.ModelLanguageStatistic;
 import java.util.ArrayList;

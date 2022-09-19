@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.AddLanguageActivity"
-    android:background="?attr/colorPrimaryVariant">
+    android:background="?attr/colorSecondaryVariant">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAddLanguage"

@@ -1,11 +1,21 @@
 package com.szelecki.immersion.fragments;
 
-import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.szelecki.immersion.R;
 import com.szelecki.immersion.activities.MainActivity;
 import com.szelecki.immersion.adapters.PostsAdapter;
-import com.szelecki.immersion.adapters.PostsAdapterInterface;
 import com.szelecki.immersion.models.ModelPostFromFirebase;
 import com.szelecki.immersion.models.ModelUser;
 import com.szelecki.immersion.presenters.HomeFragmentPresenter;
@@ -23,12 +32,17 @@ import com.szelecki.immersion.presenters.HomeFragmentPresenterInterface;
 import com.szelecki.immersion.viewModels.HomeFragmentViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class FragmentHome extends Fragment implements PostsAdapterInterface, HomeFragmentPresenterInterface {
+public class FragmentHome extends Fragment implements HomeFragmentPresenterInterface {
 
     RecyclerView mainRecyclerView;
+    EditText editTextWriteSth;
+    RelativeLayout slideAddPost;
+    TextView selectImageButton, publishButton;
 
     ArrayList<ModelPostFromFirebase> posts;
+    Uri imageUri;
 
     HomeFragmentViewModel viewModel;
     HomeFragmentPresenter presenter;
@@ -44,29 +58,97 @@ public class FragmentHome extends Fragment implements PostsAdapterInterface, Hom
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         mainRecyclerView = view.findViewById(R.id.mainRecyclerViewHomeFragment);
+        editTextWriteSth = view.findViewById(R.id.editTextHomeAddPost);
+        slideAddPost = view.findViewById(R.id.slideHomeAddPost);
+        selectImageButton = view.findViewById(R.id.selectImageHomeAddPost);
+        publishButton = view.findViewById(R.id.publishHomeAddPost);
 
         viewModel = new ViewModelProvider(this).get(HomeFragmentViewModel.class);
         user = ModelUser.getInstance();
-        presenter = new HomeFragmentPresenter(this, user.getLanguage().getDescription(), user.getAuthentication());
+        presenter = new HomeFragmentPresenter(this, getContext());
 
         posts = new ArrayList<>();
-
         presenter.getNextTenPosts();
+
+        editTextWriteSth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() > 0) {
+                    slideAddPost.setVisibility(View.VISIBLE);
+                } else {
+                    slideAddPost.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+
+        publishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String contentText = editTextWriteSth.getText().toString();
+                String category1 = "";
+                String category2 = "";
+                String category3 = "";
+                presenter.publishPost(contentText, imageUri, category1, category2, category3);
+                ((MainActivity)getActivity()).replaceFragment(new FragmentHome());
+            }
+        });
+
+        ActivityResultLauncher<String> getImage = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri result) {
+                if (result != null) {
+                    imageUri = result;
+                }
+            }
+        });
+
+        selectImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getImage.launch("image/*");
+            }
+        });
 
         return view;
     }
 
-    @Override
     public void loadMore() {
         ((MainActivity)getActivity()).replaceFragment(new FragmentHome());
     }
 
     @Override
-    public void setupPostsInAdapter(ArrayList<ModelPostFromFirebase> postsFromFirebase) {
-        posts = postsFromFirebase;
-        postsAdapter = new PostsAdapter(posts, getContext());
-        postsAdapter.setPostsAdapterInterface(FragmentHome.this);
-        mainRecyclerView.setAdapter(postsAdapter);
-        mainRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    public void setupPostsInFirebase(ModelPostFromFirebase postFromFirebase, int amount) {
+        posts.add(postFromFirebase);
+        if (posts.size() == amount) {
+            Collections.reverse(posts);
+            posts = matchWordsToContent(posts);
+            postsAdapter = new PostsAdapter(posts, getContext());
+            mainRecyclerView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+            mainRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            mainRecyclerView.setAdapter(postsAdapter);
+        }
+    }
+
+    private ArrayList<ModelPostFromFirebase> matchWordsToContent(ArrayList<ModelPostFromFirebase> modelPosts) {
+        ArrayList<String> contents = new ArrayList<>();
+        for (ModelPostFromFirebase model : modelPosts) {
+            contents.add(model.getContentText().toUpperCase());
+        }
+        viewModel.getInitialWordsForPosts(user.getLanguage().getDescription(), contents).observe(this, new Observer<ArrayList<ArrayList<String>>>() {
+            @Override
+            public void onChanged(ArrayList<ArrayList<String>> arrayLists) {
+                for (int i=0; i<arrayLists.size(); i++) {
+                    modelPosts.get(i).setWords(arrayLists.get(i));
+                    Log.d("PLACEHOLDER", String.valueOf(i+1) + " - " + String.valueOf(arrayLists.get(i).size()));
+                }
+            }
+        });
+        return modelPosts;
     }
 }

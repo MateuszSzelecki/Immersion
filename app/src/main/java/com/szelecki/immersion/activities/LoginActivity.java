@@ -9,13 +9,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.szelecki.immersion.R;
 import com.szelecki.immersion.Utils;
 import com.szelecki.immersion.models.EnumLanguages;
 import com.szelecki.immersion.models.ModelUser;
+import com.szelecki.immersion.viewModels.AddLanguageActivityViewModel;
+import com.szelecki.immersion.viewModels.FriendsFragmentViewModel;
 import com.szelecki.immersion.viewModels.MainActivityViewModel;
+
+import java.util.Date;
+import java.util.zip.DataFormatException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,7 +37,11 @@ public class LoginActivity extends AppCompatActivity {
         ModelUser user = ModelUser.getInstance();
         preferences = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
 
-        MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        AddLanguageActivityViewModel viewModelLanguage = new ViewModelProvider(this).get(AddLanguageActivityViewModel.class);
+        FriendsFragmentViewModel viewModelFriend = new ViewModelProvider(this).get(FriendsFragmentViewModel.class);
+        MainActivityViewModel viewModelMain = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+//        viewModelMain.addWord("det", "to", EnumLanguages.NORWEGIAN.getDescription(), new Date().getTime());
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 user.setFirstname("Mateusz");
                 user.setSurname("Szelecki");
                 EnumLanguages enumLanguages = Utils.setupChangedLanguage(preferences.getString("userLanguage", "default"));
-                user.setLanguage(enumLanguages);
+                user.setLanguage(EnumLanguages.GREEK); //TODO: change it
                 user.setAuthentication("12345");
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
