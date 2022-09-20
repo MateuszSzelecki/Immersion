@@ -13,7 +13,7 @@ public class ModelPostFromFirebase {
     private String category2;
     private String category3;
     private int likesAmount;
-    private ArrayList<String> words;
+    private ArrayList<ModelWord> words;
 
     public ModelPostFromFirebase(String userName, String profileImageURL, String timeAgo, String contentText, String contentImageURL, String category1, String category2, String category3, int likesAmount) {
         this.userName = userName;
@@ -99,11 +99,11 @@ public class ModelPostFromFirebase {
         this.likesAmount = likesAmount;
     }
 
-    public ArrayList<String> getWords() {
+    public ArrayList<ModelWord> getWords() {
         return words;
     }
 
-    public void setWords(ArrayList<String> words) {
+    public void setWords(ArrayList<ModelWord> words) {
         this.words = words;
     }
 }

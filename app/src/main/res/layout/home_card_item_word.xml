@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewWordHomePostItem"
+        android:id="@+id/backgroundWordHomePostItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/teal_700"
@@ -22,6 +22,7 @@
             android:padding="10dp">
 
             <TextView
+                android:id="@+id/textWordHomePostItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="det"

@@ -2,7 +2,7 @@ package com.szelecki.immersion.room;
 
 import android.app.Application;
 
-import com.szelecki.immersion.Utils;
+import com.szelecki.immersion.utils.TimeAndLanguage;
 import com.szelecki.immersion.models.ModelFriendStatistic;
 
 import java.util.ArrayList;
@@ -120,7 +120,7 @@ public class FriendStatisticRepository {
         long now = new Date().getTime();
         int messages = model.getMessages();
         String immersionIn = "Immersion in: " + language;
-        String daysFrom = "Started: " + Utils.getTimeAgo(started, now);
+        String daysFrom = "Started: " + TimeAndLanguage.getTimeAgo(started, now);
         String chatMessages = "In chat: " + String.valueOf(messages) + " messages";
         String imageURL = ""; //TODO: dodanie bazy danych do pobrania linku do zdjęcia
         return new ModelFriendStatistic(id, authentication, firstname, surname, language, started, messages, immersionIn, daysFrom, chatMessages, imageURL);

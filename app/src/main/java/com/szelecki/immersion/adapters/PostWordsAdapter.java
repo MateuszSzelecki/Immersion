@@ -7,20 +7,25 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.szelecki.immersion.R;
+import com.szelecki.immersion.models.ModelColor;
+import com.szelecki.immersion.models.ModelWord;
 
 import java.util.ArrayList;
 
 public class PostWordsAdapter extends RecyclerView.Adapter<PostWordsAdapter.PostWordsViewHolder> {
 
-    private ArrayList<String> words;
+    private ArrayList<ModelWord> words;
     private Context context;
+    private ModelColor colorTheme;
 
-    public PostWordsAdapter(ArrayList<String> words, Context context) {
+    public PostWordsAdapter(ArrayList<ModelWord> words, Context context, ModelColor colorTheme) {
         this.words = words;
         this.context = context;
+        this.colorTheme = colorTheme;
     }
 
     @NonNull
@@ -33,7 +38,10 @@ public class PostWordsAdapter extends RecyclerView.Adapter<PostWordsAdapter.Post
 
     @Override
     public void onBindViewHolder(@NonNull PostWordsViewHolder holder, int position) {
-        holder.wordView.setText(words.get(position));
+        ModelWord model = words.get(position);
+        holder.textView.setText(model.getWord());
+        holder.textView.setTextColor(colorTheme.getTextColor(position));
+        holder.background.setCardBackgroundColor(colorTheme.getBackgroundColor(position));
     }
 
     @Override
@@ -42,11 +50,13 @@ public class PostWordsAdapter extends RecyclerView.Adapter<PostWordsAdapter.Post
     }
 
     class PostWordsViewHolder extends RecyclerView.ViewHolder {
-        TextView wordView;
+        TextView textView;
+        CardView background;
 
         public PostWordsViewHolder(@NonNull View itemView) {
             super(itemView);
-            wordView = itemView.findViewById(R.id.wordViewHomePostItem);
+            textView = itemView.findViewById(R.id.textWordHomePostItem);
+            background = itemView.findViewById(R.id.backgroundWordHomePostItem);
         }
     }
 }

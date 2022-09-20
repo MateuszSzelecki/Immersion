@@ -2,14 +2,12 @@ package com.szelecki.immersion.presenters;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.collection.ArraySet;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.database.DataSnapshot;
@@ -17,13 +15,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.szelecki.immersion.Utils;
+import com.szelecki.immersion.utils.TimeAndLanguage;
 import com.szelecki.immersion.models.ModelPostToFirebase;
 import com.szelecki.immersion.models.ModelUser;
 import com.szelecki.immersion.models.ModelPostFromFirebase;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
 
@@ -77,7 +73,7 @@ public class HomeFragmentPresenter { //usage of architecture MVP
                     String userName = snapshot.child("userName").getValue(String.class);
                     String profileImageURL = ""; //TODO: uzyskane z firestore na podstawie authentication
                     long publishedDate = snapshot.child("publishedDate").getValue(Long.class);
-                    String timeAgo = Utils.getExactTimeAgo(publishedDate, new Date().getTime());
+                    String timeAgo = TimeAndLanguage.getExactTimeAgo(publishedDate, new Date().getTime());
                     String contentText = snapshot.child("contentText").getValue(String.class);
                     String contentImageURL = snapshot.child("contentImageURL").getValue(String.class);
                     String category1 = snapshot.child("category1").getValue(String.class);

@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.szelecki.immersion.R;
+import com.szelecki.immersion.models.ModelColor;
 import com.szelecki.immersion.models.ModelPostFromFirebase;
+import com.szelecki.immersion.utils.PostWordsColors;
 
 import java.util.ArrayList;
 
@@ -49,7 +51,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
         if (model.getWords().size() == 0) {
             holder.recyclerViewWords.setVisibility(View.GONE);
         } else {
-            PostWordsAdapter postWordsAdapter = new PostWordsAdapter(model.getWords(), context);
+            ModelColor colorTheme = PostWordsColors.getColors(position);
+            PostWordsAdapter postWordsAdapter = new PostWordsAdapter(model.getWords(), context, colorTheme);
             holder.recyclerViewWords.setOverScrollMode(View.OVER_SCROLL_NEVER);
             holder.recyclerViewWords.setLayoutManager(new LinearLayoutManager(context));
             holder.recyclerViewWords.setAdapter(postWordsAdapter);

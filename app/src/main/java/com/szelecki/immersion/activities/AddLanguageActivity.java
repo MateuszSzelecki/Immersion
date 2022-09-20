@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.szelecki.immersion.R;
-import com.szelecki.immersion.Utils;
+import com.szelecki.immersion.utils.TimeAndLanguage;
 import com.szelecki.immersion.adapters.AddLanguageAdapter;
 import com.szelecki.immersion.adapters.OnClickLanguageItemInterface;
 import com.szelecki.immersion.models.EnumLanguages;
@@ -73,7 +73,7 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
 
     private ModelLanguageStatistic setupLanguage(EnumLanguages language) {
         String name = language.getDescription();
-        int image = Utils.setupLanguageImage(name);
+        int image = TimeAndLanguage.setupLanguageImage(name);
         int words = 0;
         if (selected.contains(name)) {
             words = 1;
@@ -88,7 +88,7 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
     @Override
     public void addLanguage(int positon) {
         viewModel.addLanguageStatistic(languages.get(positon).getName(), new Date().getTime());
-        user.setLanguage(Utils.setupChangedLanguage(languages.get(positon).getName()));
+        user.setLanguage(TimeAndLanguage.setupChangedLanguage(languages.get(positon).getName()));
         startActivity(new Intent(AddLanguageActivity.this, MainActivity.class));
     }
 

@@ -2,7 +2,7 @@ package com.szelecki.immersion.room;
 
 import android.app.Application;
 
-import com.szelecki.immersion.Utils;
+import com.szelecki.immersion.utils.TimeAndLanguage;
 import com.szelecki.immersion.models.ModelLanguageStatistic;
 import java.util.ArrayList;
 import java.util.Date;
@@ -85,10 +85,10 @@ public class LanguageStatisticRepository {
         long recently = model.getRecently();
         long now = new Date().getTime();
         int words = model.getWords();
-        String daysFrom = "Started: " + Utils.getTimeAgo(started, now);
-        String daysRecently = "Recently: " + Utils.getTimeAgo(recently, now);
+        String daysFrom = "Started: " + TimeAndLanguage.getTimeAgo(started, now);
+        String daysRecently = "Recently: " + TimeAndLanguage.getTimeAgo(recently, now);
         String dictionaryWords = "In dictionary: " + String.valueOf(words) + " words";
-        int image = Utils.setupLanguageImage(name);
+        int image = TimeAndLanguage.setupLanguageImage(name);
         return new ModelLanguageStatistic(name, started, recently, words, image, daysFrom, daysRecently, dictionaryWords);
     }
 }

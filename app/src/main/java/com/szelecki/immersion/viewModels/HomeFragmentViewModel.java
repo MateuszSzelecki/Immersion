@@ -17,6 +17,7 @@ import com.szelecki.immersion.models.ModelWord;
 import com.szelecki.immersion.room.WordRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HomeFragmentViewModel extends AndroidViewModel {
 
@@ -27,24 +28,22 @@ public class HomeFragmentViewModel extends AndroidViewModel {
         wordRepository = new WordRepository(application);
     }
 
-    private MutableLiveData<ArrayList<ArrayList<String>>> postsWordsLiveData = new MutableLiveData<>();
-    private ArrayList<String> databaseWords = new ArrayList<>();
+    private MutableLiveData<ArrayList<ArrayList<ModelWord>>> postsWordsLiveData = new MutableLiveData<>();
+    private ArrayList<ModelWord> databaseWords = new ArrayList<>();
 
-    private ArrayList<String> getWordsForLanguage(String language) {
-        for (ModelWord modelWord : wordRepository.getAllWordsForLanguage(language)) {
-            databaseWords.add(modelWord.getId());
-        }
+    private ArrayList<ModelWord> getWordsForLanguage(String language) {
+        databaseWords.addAll(wordRepository.getAllWordsForLanguage(language));
         return databaseWords;
     }
 
-    public MutableLiveData<ArrayList<ArrayList<String>>> getInitialWordsForPosts(String language, ArrayList<String> contents) {
+    public MutableLiveData<ArrayList<ArrayList<ModelWord>>> getInitialWordsForPosts(String language, ArrayList<String> contents) {
         databaseWords = getWordsForLanguage(language);
-        ArrayList<ArrayList<String>> wordsForPosts = new ArrayList<>();
-        for (int i=0; i<contents.size(); i++) { wordsForPosts.add(new ArrayList<String>()); }
-        for (String word : databaseWords) {
+        ArrayList<ArrayList<ModelWord>> wordsForPosts = new ArrayList<>();
+        for (int i=0; i<contents.size(); i++) { wordsForPosts.add(new ArrayList<ModelWord>()); }
+        for (ModelWord model : databaseWords) {
             for (int i=0; i<contents.size(); i++) {
-                if (contents.get(i).contains(word)) {
-                    wordsForPosts.get(i).add(word.toLowerCase());
+                if (contents.get(i).contains(model.getId())) {
+                    wordsForPosts.get(i).add(model);
                 }
             }
         }

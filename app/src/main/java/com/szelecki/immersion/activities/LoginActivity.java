@@ -10,15 +10,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.szelecki.immersion.R;
-import com.szelecki.immersion.Utils;
+import com.szelecki.immersion.utils.TimeAndLanguage;
 import com.szelecki.immersion.models.EnumLanguages;
 import com.szelecki.immersion.models.ModelUser;
 import com.szelecki.immersion.viewModels.AddLanguageActivityViewModel;
 import com.szelecki.immersion.viewModels.FriendsFragmentViewModel;
 import com.szelecki.immersion.viewModels.MainActivityViewModel;
-
-import java.util.Date;
-import java.util.zip.DataFormatException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -48,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 user.setFirstname("Mateusz");
                 user.setSurname("Szelecki");
-                EnumLanguages enumLanguages = Utils.setupChangedLanguage(preferences.getString("userLanguage", "default"));
+                EnumLanguages enumLanguages = TimeAndLanguage.setupChangedLanguage(preferences.getString("userLanguage", "default"));
                 user.setLanguage(EnumLanguages.GREEK); //TODO: change it
                 user.setAuthentication("12345");
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);

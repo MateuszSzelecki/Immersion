@@ -16,7 +16,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
@@ -25,7 +24,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.szelecki.immersion.Utils;
+import com.szelecki.immersion.utils.TimeAndLanguage;
 import com.szelecki.immersion.adapters.NavigationViewFriendsAdapter;
 import com.szelecki.immersion.adapters.OnClickLanguageItemInterface;
 import com.szelecki.immersion.adapters.SheetDialogAdapter;
@@ -147,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
                 languages = modelLanguageStatistics;
                 languagesAdapter.setLanguages(languages);
                 if (languages.stream().noneMatch(s -> s.getName().equals(user.getLanguage().getDescription())) || user.getLanguage() == EnumLanguages.DEFAULT || user.getLanguage() == null) {
-                    user.setLanguage(Utils.setupChangedLanguage(languages.get(0).getName()));
+                    user.setLanguage(TimeAndLanguage.setupChangedLanguage(languages.get(0).getName()));
                 }
             }
         });
@@ -198,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
     @Override
     public void changeUserLanguage(int position) {
         newStatisticsAndPref();
-        user.setLanguage(Utils.setupChangedLanguage(languages.get(position).getName()));
+        user.setLanguage(TimeAndLanguage.setupChangedLanguage(languages.get(position).getName()));
         startActivity(new Intent(MainActivity.this, MainActivity.class));
     }
 
@@ -226,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
                 public void onClick(DialogInterface dialogInterface, int i) {
                     viewModel.deleteLanguageStatistic(languages.get(position).getName());
                     languages.remove(position);
-                    user.setLanguage(Utils.setupChangedLanguage(languages.get(0).getName()));
+                    user.setLanguage(TimeAndLanguage.setupChangedLanguage(languages.get(0).getName()));
                     startActivity(new Intent(MainActivity.this, MainActivity.class));
                 }
             });

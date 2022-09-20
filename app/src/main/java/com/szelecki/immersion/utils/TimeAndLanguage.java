@@ -1,9 +1,9 @@
-package com.szelecki.immersion;
+package com.szelecki.immersion.utils;
 
 import com.szelecki.immersion.R;
 import com.szelecki.immersion.models.EnumLanguages;
 
-public class Utils {
+public class TimeAndLanguage {
 
     public static final long SECOND_MILLIS = 1000;
     public static final long MINUTE_MILLIS = 60 * SECOND_MILLIS;

@@ -27,6 +27,7 @@ import com.szelecki.immersion.activities.MainActivity;
 import com.szelecki.immersion.adapters.PostsAdapter;
 import com.szelecki.immersion.models.ModelPostFromFirebase;
 import com.szelecki.immersion.models.ModelUser;
+import com.szelecki.immersion.models.ModelWord;
 import com.szelecki.immersion.presenters.HomeFragmentPresenter;
 import com.szelecki.immersion.presenters.HomeFragmentPresenterInterface;
 import com.szelecki.immersion.viewModels.HomeFragmentViewModel;
@@ -140,12 +141,11 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
         for (ModelPostFromFirebase model : modelPosts) {
             contents.add(model.getContentText().toUpperCase());
         }
-        viewModel.getInitialWordsForPosts(user.getLanguage().getDescription(), contents).observe(this, new Observer<ArrayList<ArrayList<String>>>() {
+        viewModel.getInitialWordsForPosts(user.getLanguage().getDescription(), contents).observe(this, new Observer<ArrayList<ArrayList<ModelWord>>>() {
             @Override
-            public void onChanged(ArrayList<ArrayList<String>> arrayLists) {
+            public void onChanged(ArrayList<ArrayList<ModelWord>> arrayLists) {
                 for (int i=0; i<arrayLists.size(); i++) {
                     modelPosts.get(i).setWords(arrayLists.get(i));
-                    Log.d("PLACEHOLDER", String.valueOf(i+1) + " - " + String.valueOf(arrayLists.get(i).size()));
                 }
             }
         });
