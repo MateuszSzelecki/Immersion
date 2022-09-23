@@ -7,48 +7,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/category1HomePostItem"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCategoriesHomeAddPost"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_category_item"
-            android:fontFamily="@font/wellingtons_regular"
-            android:padding="7dp"
-            android:text="football"
-            android:textColor="@color/black"
-            android:textSize="11sp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/selectImageHomeAddPost"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/category2HomePostItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/shape_category_item"
-            android:fontFamily="@font/wellingtons_regular"
-            android:padding="7dp"
-            android:text="opinion"
-            android:textColor="@color/black"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/category1HomePostItem"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/category3HomePostItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/shape_category_item"
-            android:fontFamily="@font/wellingtons_regular"
-            android:padding="7dp"
-            android:text="Spain"
-            android:textColor="@color/black"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/category2HomePostItem"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

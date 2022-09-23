@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".fragments.FragmentHome"
     android:background="?attr/colorPrimaryVariant"
-    android:padding="12dp">
+    android:paddingTop="12dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp">
 
     <RelativeLayout
         android:id="@+id/relativeLayout4"

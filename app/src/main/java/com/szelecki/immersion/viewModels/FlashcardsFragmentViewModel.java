@@ -1,6 +1,7 @@
 package com.szelecki.immersion.viewModels;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -25,7 +26,7 @@ public class FlashcardsFragmentViewModel extends AndroidViewModel {
     private ArrayList<ModelWord> temporary = new ArrayList<>();
 
     public MutableLiveData<ArrayList<ModelWord>> getInitialWordsAtTheLevels(String language, long time) {
-        temporary = wordRepository.getWordsAtTheLevel(language, time - TimeAndLanguage.DAY_MILLIS, 1, 15);
+        temporary = wordRepository.getWordsAtTheLevel(language, time, 1, 15);
         temporary.addAll(wordRepository.getWordsAtTheLevel(language, time - 3* TimeAndLanguage.DAY_MILLIS, 2, 15));
         temporary.addAll(wordRepository.getWordsAtTheLevel(language, time - TimeAndLanguage.WEEK_MILLIS, 3, 15));
         temporary.addAll(wordRepository.getWordsAtTheLevel(language, time - 10* TimeAndLanguage.DAY_MILLIS, 4, 15));

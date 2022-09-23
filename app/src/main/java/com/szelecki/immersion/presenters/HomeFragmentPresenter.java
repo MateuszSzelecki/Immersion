@@ -91,6 +91,7 @@ public class HomeFragmentPresenter { //usage of architecture MVP
     }
 
     public void publishPost(String contentText, Uri imageUri, String category1, String category2, String category3) {
+        String contentImageURL = "."; //TODO
         ModelPostToFirebase model = new ModelPostToFirebase(user.getAuthentication(), user.getFirstname() + " " + user.getSurname(), user.getImageURL(), new Date().getTime(), contentText, contentImageURL, category1, category2, category3);
         String postId = model.getPostId(user.getLanguage().getDescription());
         String getIdChild = "-" + String.valueOf(Timestamp.now().getSeconds() + user.getAuthentication().substring(0,3)); //TODO: dla znajomych

@@ -1,6 +1,7 @@
 package com.szelecki.immersion.room;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.szelecki.immersion.models.ModelFriendStatistic;
 import com.szelecki.immersion.models.ModelLanguageStatistic;

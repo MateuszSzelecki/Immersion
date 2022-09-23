@@ -17,6 +17,8 @@ import com.szelecki.immersion.viewModels.AddLanguageActivityViewModel;
 import com.szelecki.immersion.viewModels.FriendsFragmentViewModel;
 import com.szelecki.immersion.viewModels.MainActivityViewModel;
 
+import java.util.Date;
+
 public class LoginActivity extends AppCompatActivity {
 
     Button button;
@@ -38,15 +40,13 @@ public class LoginActivity extends AppCompatActivity {
         FriendsFragmentViewModel viewModelFriend = new ViewModelProvider(this).get(FriendsFragmentViewModel.class);
         MainActivityViewModel viewModelMain = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
-//        viewModelMain.addWord("det", "to", EnumLanguages.NORWEGIAN.getDescription(), new Date().getTime());
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 user.setFirstname("Mateusz");
                 user.setSurname("Szelecki");
                 EnumLanguages enumLanguages = TimeAndLanguage.setupChangedLanguage(preferences.getString("userLanguage", "default"));
-                user.setLanguage(EnumLanguages.GREEK); //TODO: change it
+                user.setLanguage(EnumLanguages.NORWEGIAN);
                 user.setAuthentication("12345");
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);

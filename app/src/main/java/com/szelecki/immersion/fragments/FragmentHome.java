@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.szelecki.immersion.R;
 import com.szelecki.immersion.activities.MainActivity;
+import com.szelecki.immersion.adapters.AddPostCategoriesAdapter;
 import com.szelecki.immersion.adapters.PostsAdapter;
 import com.szelecki.immersion.models.ModelPostFromFirebase;
 import com.szelecki.immersion.models.ModelUser;
@@ -34,15 +35,17 @@ import com.szelecki.immersion.viewModels.HomeFragmentViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class FragmentHome extends Fragment implements HomeFragmentPresenterInterface {
 
-    RecyclerView mainRecyclerView;
+    RecyclerView mainRecyclerView, recyclerViewCategories;
     EditText editTextWriteSth;
     RelativeLayout slideAddPost;
     TextView selectImageButton, publishButton;
 
     ArrayList<ModelPostFromFirebase> posts;
+    ArrayList<String> chosenCategories;
     Uri imageUri;
 
     HomeFragmentViewModel viewModel;
@@ -59,6 +62,7 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         mainRecyclerView = view.findViewById(R.id.mainRecyclerViewHomeFragment);
+        recyclerViewCategories = view.findViewById(R.id.recyclerViewCategoriesHomeAddPost);
         editTextWriteSth = view.findViewById(R.id.editTextHomeAddPost);
         slideAddPost = view.findViewById(R.id.slideHomeAddPost);
         selectImageButton = view.findViewById(R.id.selectImageHomeAddPost);
@@ -71,6 +75,8 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
         posts = new ArrayList<>();
         presenter.getNextTenPosts();
 
+        chosenCategories = new ArrayList<>();
+
         editTextWriteSth.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
@@ -79,6 +85,7 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() > 0) {
                     slideAddPost.setVisibility(View.VISIBLE);
+                    initCategoriesRecyclerView();
                 } else {
                     slideAddPost.setVisibility(View.GONE);
                 }
@@ -134,6 +141,25 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
             mainRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             mainRecyclerView.setAdapter(postsAdapter);
         }
+    }
+
+    private void initCategoriesRecyclerView() {
+        ArrayList<String> categories = new ArrayList<>();
+        categories.add("football"); categories.add("opinion"); categories.add("DIY"); categories.add("norwegian");
+        categories.add("hockey"); categories.add("fact"); //TODO: categories to select
+        AddPostCategoriesAdapter adapter = new AddPostCategoriesAdapter(categories, getContext());
+        adapter.setOnSelectedCategoryInterface(new AddPostCategoriesAdapter.OnSelectedCategoryAddPostInterface() {
+            @Override
+            public void onClickCategory(ArrayList<String> chosen) {
+                chosenCategories = chosen;
+                for (String string : chosenCategories) {
+                    Log.d("PLACEHOLDER", string);
+                }
+            }
+        });
+        recyclerViewCategories.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewCategories.setAdapter(adapter);
     }
 
     private ArrayList<ModelPostFromFirebase> matchWordsToContent(ArrayList<ModelPostFromFirebase> modelPosts) {

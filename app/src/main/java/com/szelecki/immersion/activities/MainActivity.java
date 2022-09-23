@@ -157,8 +157,10 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
             public void onChanged(ArrayList<ModelFriendStatistic> modelFriendStatistics) {
                 bestFriends = modelFriendStatistics;
                 int amount = 6 - languages.size();
-                List<ModelFriendStatistic> temp = bestFriends.stream().
-                        sorted(Comparator.comparing(ModelFriendStatistic::getMessages)).collect(Collectors.toList());
+                if (bestFriends.size() < amount) {
+                    amount = bestFriends.size();
+                }
+                List<ModelFriendStatistic> temp = bestFriends.stream().sorted(Comparator.comparing(ModelFriendStatistic::getMessages)).collect(Collectors.toList());
                 bestFriends.clear();
                 for (int i=1; i<=amount; i++) { bestFriends.add(temp.get(temp.size()-i)); }
                 friendsAdapter.setFriends(bestFriends);

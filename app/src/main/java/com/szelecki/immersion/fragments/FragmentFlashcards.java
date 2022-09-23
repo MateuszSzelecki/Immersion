@@ -16,6 +16,7 @@ import com.szelecki.immersion.adapters.FlashcardsAdapter;
 import com.szelecki.immersion.adapters.FlashcardsAdapterInterface;
 import com.szelecki.immersion.models.ModelUser;
 import com.szelecki.immersion.models.ModelWord;
+import com.szelecki.immersion.utils.TimeAndLanguage;
 import com.szelecki.immersion.viewModels.FlashcardsFragmentViewModel;
 
 import java.util.ArrayList;
@@ -53,6 +54,10 @@ public class FragmentFlashcards extends Fragment {
                 words = modelWords;
                 adapter.setWords(words);
                 adapter.notifyDataSetChanged();
+                for (ModelWord model : words) {
+                    Log.d("PLACEHOLDER", String.valueOf(model.getRecently()));
+                    Log.d("PLACEHOLDER", String.valueOf(new Date().getTime() - TimeAndLanguage.DAY_MILLIS));
+                }
             }
         });
 
