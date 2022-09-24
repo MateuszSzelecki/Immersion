@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.szelecki.immersion.R;
 import com.szelecki.immersion.models.ModelWord;
 
@@ -19,10 +20,12 @@ public class PostWordsAdapter extends RecyclerView.Adapter<PostWordsAdapter.Post
 
     private ArrayList<ModelWord> words;
     private Context context;
+    private int postPosition;
 
-    public PostWordsAdapter(ArrayList<ModelWord> words, Context context) {
+    public PostWordsAdapter(ArrayList<ModelWord> words, Context context, int postPosition) {
         this.words = words;
         this.context = context;
+        this.postPosition = postPosition;
     }
 
     @NonNull
@@ -38,6 +41,14 @@ public class PostWordsAdapter extends RecyclerView.Adapter<PostWordsAdapter.Post
         ModelWord model = words.get(position);
         holder.textWord.setText(model.getWord());
         holder.textMeaning.setText(model.getMeaning());
+
+        if (postPosition%2 == 0) {
+            holder.textWord.setTextColor(context.getColor(R.color.main_blue));
+            holder.backgroundMeaning.setCardBackgroundColor(context.getColor(R.color.main_blue));
+        } else {
+            holder.textWord.setTextColor(context.getColor(R.color.main_yellow));
+            holder.backgroundMeaning.setCardBackgroundColor(context.getColor(R.color.main_yellow));
+        }
 
         holder.backgroundWord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +76,7 @@ public class PostWordsAdapter extends RecyclerView.Adapter<PostWordsAdapter.Post
 
     class PostWordsViewHolder extends RecyclerView.ViewHolder {
         TextView textWord, textMeaning;
-        CardView backgroundWord, backgroundMeaning;
+        MaterialCardView backgroundWord, backgroundMeaning;
 
         public PostWordsViewHolder(@NonNull View itemView) {
             super(itemView);

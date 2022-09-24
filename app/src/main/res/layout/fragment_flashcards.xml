@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.FragmentFlashcards"
-    android:background="?attr/colorPrimaryVariant">
+    android:background="@color/main_yellow">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPagerFlashcards"

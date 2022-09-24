@@ -50,7 +50,7 @@ public class HomeFragmentPresenter { //usage of architecture MVP
                 if (snapshot.hasChildren()) {
                     int amount = 0;
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        if (amount < 5) { //TODO: change to 10
+                        if (amount < 10) { //TODO: change to 10
                             amount++;
                             postsId.add(dataSnapshot.getValue(String.class));
                         }

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.szelecki.immersion.R;
 import com.szelecki.immersion.models.ModelPostFromFirebase;
 
@@ -30,8 +31,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
     @Override
     public PostsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.home_card_item, parent, false);
-        return new PostsViewHolder(view);
+        if (viewType == 1) {
+            View view = inflater.inflate(R.layout.home_card_item_without, parent, false);
+            return new PostsViewHolder(view);
+        } else {
+            View view = inflater.inflate(R.layout.home_card_item_with, parent, false);
+            return new PostsViewHolder(view);
+        }
     }
 
     @Override
@@ -46,10 +52,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
         holder.category2.setText(model.getCategory2());
         holder.category3.setText(model.getCategory3());
 
-        if (model.getWords().size() == 0) {
-            holder.recyclerViewWords.setVisibility(View.GONE);
+        if (position%2 == 0) {
+            holder.shadowCard.setCardBackgroundColor(context.getColor(R.color.main_blue));
         } else {
-            PostWordsAdapter postWordsAdapter = new PostWordsAdapter(model.getWords(), context);
+            holder.shadowCard.setCardBackgroundColor(context.getColor(R.color.main_yellow));
+        }
+
+        if (model.getWords().size() > 0) {
+            PostWordsAdapter postWordsAdapter = new PostWordsAdapter(model.getWords(), context, position);
             holder.recyclerViewWords.setOverScrollMode(View.OVER_SCROLL_NEVER);
             holder.recyclerViewWords.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             holder.recyclerViewWords.setAdapter(postWordsAdapter);
@@ -67,9 +77,19 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
         return models.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (models.get(position).getWords().size() == 0) {
+            return 1; //1 dla postu bez słówek ze słownika
+        } else {
+            return 2; //2 dla postu z słówkami ze słownika
+        }
+    }
+
     class PostsViewHolder extends RecyclerView.ViewHolder {
         TextView name, timeAgo, content, likes, comments, category1, category2, category3;
         ImageView profileImage, contentImage;
+        MaterialCardView shadowCard;
         RecyclerView recyclerViewWords;
 
         public PostsViewHolder(@NonNull View itemView) {
@@ -84,6 +104,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsViewHol
             category3 = itemView.findViewById(R.id.category3HomePostItem);
             profileImage = itemView.findViewById(R.id.profileImageHomePostItem);
             contentImage = itemView.findViewById(R.id.contentImageHomePostItem);
+            shadowCard = itemView.findViewById(R.id.shadowCardHomePostItem);
             recyclerViewWords = itemView.findViewById(R.id.recyclerViewWordsHomePostItem);
         }
     }

@@ -5,17 +5,17 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorOnPrimary">
+        android:background="@color/main_yellow">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?attr/colorOnPrimary"
+            android:background="@color/main_yellow"
             app:title="Immersion"
-            app:titleTextColor="?attr/colorPrimary"
+            app:titleTextColor="@color/main_black"
             app:navigationIcon="@drawable/ic_menu_icon"
-            app:navigationIconTint="?attr/colorPrimary" />
+            app:navigationIconTint="@color/main_black" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

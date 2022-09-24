@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/drawable/ic_add_icon.xml" value="0.136" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/drawable/ic_comment.xml" value="0.136" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/drawable/ic_flag_french_background.xml" value="0.122" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/drawable/ic_flag_spanish_background.xml" value="0.1295" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/drawable/ic_flashcards_icon.xml" value="0.1375" />
+        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/drawable/ic_friends_icon.xml" value="0.136" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/drawable/ic_heart_contour.xml" value="0.136" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/drawable/ic_home_icon.xml" value="0.1375" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/drawable/ic_publish.xml" value="0.136" />
@@ -23,14 +25,14 @@
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/activity_add_language.xml" value="0.2" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/activity_login.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/addlanguage_recyclerview_item.xml" value="0.1" />
+        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/addlanguage_recyclerview_item.xml" value="0.264" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/flashcards_card_item.xml" value="0.264" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/flashcards_card_item_meaning.xml" value="0.16" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/flashcards_card_item_word.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/fragment_flashcards.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/fragment_friends.xml" value="0.25" />
-        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/fragment_message.xml" value="0.25" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_addpost.xml" value="0.264" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_addpost_category.xml" value="0.536" />
@@ -39,6 +41,8 @@
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_item_content.xml" value="0.1" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_item_profile.xml" value="0.4" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_item_statistics.xml" value="0.4" />
+        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_item_with.xml" value="0.4109090909090909" />
+        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_item_without.xml" value="0.264" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_item_word.xml" value="0.4" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_card_item_words.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/home_external_item.xml" value="0.20436083796494228" />
@@ -50,6 +54,7 @@
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/main_select_language_sheet.xml" value="0.18671875" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/main_sheet_select_language.xml" value="0.20436083796494228" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/main_sheet_select_language_item.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/main_tab_layout.xml" value="0.2" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/main_toolbar.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/merge_navigation_header.xml" value="0.25" />
         <entry key="..\:/Users/48504/AndroidStudioProjects/Immersion/app/src/main/res/layout/merge_navigation_header_item.xml" value="0.24895833333333334" />

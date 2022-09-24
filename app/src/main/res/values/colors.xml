@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main1">#FF000000</color>
+    <color name="main_yellow">#FCE76C</color>
+    <color name="main_blue">#8BCFFC</color>
+    <color name="main_black">#1F1E23</color>
+    <color name="main_orange">#FF8F5D</color>
 
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>

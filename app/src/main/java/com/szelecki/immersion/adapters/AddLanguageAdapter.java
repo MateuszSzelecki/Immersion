@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,11 +33,11 @@ public class AddLanguageAdapter extends RecyclerView.Adapter<AddLanguageAdapter.
         this.listener = mListener;
     }
 
-    public AddLanguageAdapter(ArrayList<ModelLanguageStatistic> models, ArrayList<String> representations, Context context, Drawable selectedDrawable) {
+    public AddLanguageAdapter(ArrayList<ModelLanguageStatistic> models, ArrayList<String> representations, Context context, Drawable selected) {
         this.models = models;
         this.representations = representations;
         this.context = context;
-        this.selectedDrawable = selectedDrawable;
+        this.selectedDrawable = selected;
     }
 
     @NonNull

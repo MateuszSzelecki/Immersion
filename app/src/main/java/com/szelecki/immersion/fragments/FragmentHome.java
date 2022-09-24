@@ -85,7 +85,7 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() > 0) {
                     slideAddPost.setVisibility(View.VISIBLE);
-                    initCategoriesRecyclerView();
+                    initAddCategoriesRecyclerView();
                 } else {
                     slideAddPost.setVisibility(View.GONE);
                 }
@@ -134,7 +134,6 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
     public void setupPostsInFirebase(ModelPostFromFirebase postFromFirebase, int amount) {
         posts.add(postFromFirebase);
         if (posts.size() == amount) {
-            Collections.reverse(posts);
             posts = matchWordsToContent(posts);
             postsAdapter = new PostsAdapter(posts, getContext());
             mainRecyclerView.setOverScrollMode(View.OVER_SCROLL_NEVER);
@@ -143,7 +142,7 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
         }
     }
 
-    private void initCategoriesRecyclerView() {
+    private void initAddCategoriesRecyclerView() {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("football"); categories.add("opinion"); categories.add("DIY"); categories.add("norwegian");
         categories.add("hockey"); categories.add("fact"); //TODO: categories to select
