@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.LoginActivity"
-    android:background="@color/main_yellow">
+    tools:context=".activities.RegistrationActivity"
+    android:background="@color/main_blue">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,11 +16,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textViewLogin"
+            android:id="@+id/textViewRegistration"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/wellingtons_medium"
-            android:text="Login"
+            android:text="Sign up"
             android:textColor="@color/main_black"
             android:textSize="54sp"
             android:textStyle="bold"
@@ -29,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewUnderLogin"
+            android:id="@+id/textViewUnderRegistration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/wellingtons_medium"
@@ -37,7 +36,7 @@
             android:textColor="@color/main_black"
             android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewRegistration" />
 
         <TextView
             android:id="@+id/textViewLanguages"
@@ -48,10 +47,10 @@
             android:textColor="@color/main_black"
             android:textSize="17sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewUnderLogin"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewUnderRegistration"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textViewUnderLogin"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
+            app:layout_constraintStart_toEndOf="@+id/textViewUnderRegistration"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRegistration" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/loginCardView"
@@ -62,28 +61,50 @@
             app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUnderLogin">
+            app:layout_constraintTop_toBottomOf="@+id/textViewLanguages">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="30dp"
-                android:paddingTop="30dp"
                 android:paddingEnd="30dp"
+                android:paddingTop="30dp"
                 android:paddingBottom="55dp">
 
                 <EditText
-                    android:id="@+id/enterEmailLogin"
+                    android:id="@+id/enterNameRegistration"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="Enter email"
+                    android:hint="Enter name"
                     android:textSize="17sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/enterPasswordLogin"
+                    android:id="@+id/enterSurnameRegistration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Enter surname"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/enterNameRegistration" />
+
+                <EditText
+                    android:id="@+id/enterEmailRegistration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Enter email"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/enterSurnameRegistration" />
+
+                <EditText
+                    android:id="@+id/enterPasswordRegistration"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -91,20 +112,20 @@
                     android:textSize="17sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/enterEmailLogin" />
+                    app:layout_constraintTop_toBottomOf="@+id/enterEmailRegistration" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonLogin"
+            android:id="@+id/buttonRegistration"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:background="@drawable/shape_button_login"
+            android:background="@drawable/shape_button_registration"
             android:padding="8dp"
-            android:text="Login"
+            android:text="Sign up"
             android:textAllCaps="false"
             android:textColor="@color/main_black"
             android:textSize="18sp"
@@ -115,18 +136,18 @@
             app:layout_constraintTop_toBottomOf="@+id/loginCardView" />
 
         <TextView
-            android:id="@+id/goToSignUpButton"
+            android:id="@+id/goToLoginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/wellingtons_medium"
-            android:text="Sign up"
+            android:text="Login"
             android:textColor="@color/main_black"
             android:textSize="15sp"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonRegistration" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
