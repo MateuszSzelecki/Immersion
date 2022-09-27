@@ -5,15 +5,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.AddLanguageActivity"
-    android:background="?attr/colorSecondaryVariant">
+    android:background="@color/dark_white">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAddLanguage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/confirmButtonAddLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_button_addlanguage_commit"
+        android:text="1/4"
+        android:textColor="@color/main_black"
+        android:textSize="17sp"
+        android:drawableRight="@drawable/ic_next_icon"
+        android:drawableTint="@color/main_black"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewAddLanguage"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewAddLanguage" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/introMotherAddLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/main_yellow">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:fontFamily="@font/wellingtons_medium"
+                android:text="2. Choose your mother language"
+                android:textColor="@color/main_black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/introAddLanguageAddLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/main_blue">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:fontFamily="@font/wellingtons_medium"
+                android:text="3. Choose the languages you are learning"
+                android:textColor="@color/main_black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

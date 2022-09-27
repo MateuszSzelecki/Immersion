@@ -16,6 +16,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
@@ -90,7 +91,9 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
         initRecyclerViewFriendStatistics();
 
         //tytuł toolbaru
-        toolbar.setTitle(user.getLanguage().getRepresentation());
+        if (user.getLanguage() != EnumLanguages.DEFAULT) {
+            toolbar.setTitle(user.getLanguage().getRepresentation());
+        }
 
         //otwieranie fragmentów po kliknięciach tabu
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -147,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
                 languagesAdapter.setLanguages(languages);
                 if (languages.stream().noneMatch(s -> s.getName().equals(user.getLanguage().getDescription())) || user.getLanguage() == EnumLanguages.DEFAULT || user.getLanguage() == null) {
                     user.setLanguage(TimeAndLanguage.setupChangedLanguage(languages.get(0).getName()));
+                    toolbar.setTitle(user.getLanguage().getRepresentation());
                 }
             }
         });
@@ -171,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.replace(R.id.frameLayoutMain, fragment);
         fragmentTransaction.commit();
     }
 
@@ -205,14 +209,18 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
 
     //metoda na przytrzymaniu itemu w RecyclerView w BottomSheet, strona do dodania language
     @Override
-    public void addLanguage(int position) {
+    public boolean addLanguage(ArrayList<Integer> chosen) {
         Intent intent = new Intent(MainActivity.this, AddLanguageActivity.class);
         ArrayList<String> selected = new ArrayList<>();
         for (ModelLanguageStatistic model : languages) {
             selected.add(model.getName());
         }
         intent.putExtra("selected", selected);
+        intent.putExtra("signUp", false);
+        intent.putExtra("motherLanguage", false);
+        intent.putExtra("addLanguage", false);
         startActivity(intent);
+        return true;
     }
 
     //metoda na kliknięcie itemu w RecyclerView w BottomSheet, usunięcie language

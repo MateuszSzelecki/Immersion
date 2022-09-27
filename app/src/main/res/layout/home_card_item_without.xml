@@ -30,7 +30,7 @@
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/black"
+        app:strokeColor="@color/main_black"
         app:strokeWidth="0.4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

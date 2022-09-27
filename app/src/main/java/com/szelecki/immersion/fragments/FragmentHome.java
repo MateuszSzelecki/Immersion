@@ -1,5 +1,7 @@
 package com.szelecki.immersion.fragments;
 
+import static android.view.View.GONE;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -42,7 +45,8 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
     RecyclerView mainRecyclerView, recyclerViewCategories;
     EditText editTextWriteSth;
     RelativeLayout slideAddPost;
-    TextView selectImageButton, publishButton;
+    TextView selectImageButton, publishButton, helloText;
+    View yellowView;
 
     ArrayList<ModelPostFromFirebase> posts;
     ArrayList<String> chosenCategories;
@@ -67,6 +71,8 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
         slideAddPost = view.findViewById(R.id.slideHomeAddPost);
         selectImageButton = view.findViewById(R.id.selectImageHomeAddPost);
         publishButton = view.findViewById(R.id.publishHomeAddPost);
+        helloText = view.findViewById(R.id.helloTextView);
+        yellowView = view.findViewById(R.id.yellowView);
 
         viewModel = new ViewModelProvider(this).get(HomeFragmentViewModel.class);
         user = ModelUser.getInstance();
@@ -76,7 +82,7 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
         presenter.getNextTenPosts();
 
         chosenCategories = new ArrayList<>();
-
+        
         editTextWriteSth.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
@@ -87,7 +93,7 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
                     slideAddPost.setVisibility(View.VISIBLE);
                     initAddCategoriesRecyclerView();
                 } else {
-                    slideAddPost.setVisibility(View.GONE);
+                    slideAddPost.setVisibility(GONE);
                 }
             }
 

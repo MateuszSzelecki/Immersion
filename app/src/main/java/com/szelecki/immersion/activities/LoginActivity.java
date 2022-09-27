@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                 user.setFirstname("Mateusz");
                 user.setSurname("Szelecki");
                 EnumLanguages enumLanguages = TimeAndLanguage.setupChangedLanguage(preferences.getString("userLanguage", "default"));
-                user.setLanguage(EnumLanguages.NORWEGIAN);
+                user.setLanguage(EnumLanguages.DEFAULT);
                 user.setAuthentication("12345");
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         goToSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                handler.removeCallbacks(languagesRunnable);
                 startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
             }
         });

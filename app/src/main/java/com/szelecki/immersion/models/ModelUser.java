@@ -1,6 +1,7 @@
 package com.szelecki.immersion.models;
 
 import android.app.Application;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -8,9 +9,14 @@ public class ModelUser extends Application {
     private String authentication;
     private String firstname;
     private String surname;
+    private String email;
+    private String password;
     private String imageURL;
+    private int rotation;
     private EnumLanguages language;
-    private ArrayList<String> categories; //TODO: tablica modeli categories
+    private EnumLanguages motherLanguage;
+    private ArrayList<String> hobbies; //TODO: tablica modeli categories
+    private ArrayList<String> languages;
 
     private static ModelUser instance;
 
@@ -56,11 +62,59 @@ public class ModelUser extends Application {
         this.imageURL = imageURL;
     }
 
+    public int getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
+    }
+
     public EnumLanguages getLanguage() {
         return language;
     }
 
     public void setLanguage(EnumLanguages language) {
         this.language = language;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public EnumLanguages getMotherLanguage() {
+        return motherLanguage;
+    }
+
+    public void setMotherLanguage(EnumLanguages motherLanguage) {
+        this.motherLanguage = motherLanguage;
+    }
+
+    public ArrayList<String> getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(ArrayList<String> hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public ArrayList<String> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(ArrayList<String> languages) {
+        this.languages = languages;
     }
 }

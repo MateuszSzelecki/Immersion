@@ -81,7 +81,8 @@ public class SheetDialogAdapter extends RecyclerView.Adapter<SheetDialogAdapter.
             imageViewAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.addLanguage(getAdapterPosition());
+                    ArrayList<Integer> chosen = new ArrayList<>();
+                    listener.addLanguage(chosen);
                 }
             });
         }
