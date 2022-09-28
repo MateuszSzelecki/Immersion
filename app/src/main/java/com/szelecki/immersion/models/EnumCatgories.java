@@ -6,7 +6,7 @@ public enum EnumCatgories {
     GADGETS("gadgets", "tech"),
     MOBILE_APP("mobile app", "tech"),
 
-    GAMING("gaming", ""),
+    GAMING("gaming", "."),
     E_SPORTS("e-sports", "gaming"),
 
     HEALTH("health", ""),
