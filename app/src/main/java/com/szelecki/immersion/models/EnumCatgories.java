@@ -1,7 +1,7 @@
 package com.szelecki.immersion.models;
 
 public enum EnumCatgories {
-    TECH("tech", ""),
+    TECH("tech", "."),
     COMPUTER("computer", "tech"),
     GADGETS("gadgets", "tech"),
     MOBILE_APP("mobile app", "tech"),
