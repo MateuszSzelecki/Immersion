@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Immersion"
         tools:targetApi="33">
         <activity
+            android:name=".activities.EditCategoriesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.EditProfileActivity"
             android:exported="false" />
         <activity

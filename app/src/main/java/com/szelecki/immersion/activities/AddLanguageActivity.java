@@ -103,10 +103,10 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
+        confirmButton.setOnClickListener(new View.OnClickListener() { //tylko gdy w trybie addLanguage
             @Override
             public void onClick(View view) {
-                if (chosen.size() > 0) {
+                if (chosen.size() > 0) { //jeśli wybrano jakieś języki
                     ArrayList<String> tempLanguages = new ArrayList<>();
                     for (int index : chosen) {
                         viewModel.addLanguageStatistic(languages.get(index).getName(), new Date().getTime());
@@ -159,7 +159,7 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
 
     @Override
     public boolean addLanguage(ArrayList<Integer> recyclerChosen) {
-        if (motherLanguage) {
+        if (motherLanguage && !addLanguage) { //jeśli w trybie mother language
             if (recyclerChosen.size() == 1) {
                 user.setMotherLanguage(TimeAndLanguage.setupChangedLanguage(languages.get(recyclerChosen.get(0)).getName()));
                 Intent intent = new Intent(AddLanguageActivity.this, AddLanguageActivity.class);
