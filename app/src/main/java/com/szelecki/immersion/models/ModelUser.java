@@ -12,7 +12,7 @@ public class ModelUser extends Application {
     private String email;
     private String password;
     private String imageURL;
-    private int rotation;
+    private String rotation;
     private EnumLanguages language;
     private EnumLanguages motherLanguage;
     private ArrayList<String> hobbies; //TODO: tablica modeli categories
@@ -62,11 +62,11 @@ public class ModelUser extends Application {
         this.imageURL = imageURL;
     }
 
-    public int getRotation() {
+    public String getRotation() {
         return rotation;
     }
 
-    public void setRotation(int rotation) {
+    public void setRotation(String rotation) {
         this.rotation = rotation;
     }
 

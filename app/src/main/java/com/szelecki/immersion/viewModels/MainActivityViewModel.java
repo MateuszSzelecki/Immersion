@@ -47,8 +47,8 @@ public class MainActivityViewModel extends AndroidViewModel {
         languageStatisticRepository.deleteLanguageStatistic(name);
     }
 
-    public MutableLiveData<ArrayList<ModelFriendStatistic>> getInitialTheBestFriendsStatistics(int theWorstMessages) {
-        allFriendsStatisticsLiveData.setValue(friendStatisticRepository.getTheBestFriendsStatistic(theWorstMessages));
+    public MutableLiveData<ArrayList<ModelFriendStatistic>> getInitialTheBestFriendsStatistics() {
+        allFriendsStatisticsLiveData.setValue(friendStatisticRepository.getTheBestFriendsStatistic());
         return allFriendsStatisticsLiveData;
     }
 

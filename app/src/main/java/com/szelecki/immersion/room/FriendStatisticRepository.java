@@ -22,9 +22,9 @@ public class FriendStatisticRepository {
         friendStatisticDAO = appDatabase.getFriendStatisticDAO();
     }
 
-    public ArrayList<ModelFriendStatistic> getTheBestFriendsStatistic(int theWorstMessages) {
+    public ArrayList<ModelFriendStatistic> getTheBestFriendsStatistic() {
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        Future<ArrayList<ModelFriendStatistic>> futureList = executor.submit(new TaskTheBestFriends(theWorstMessages));
+        Future<ArrayList<ModelFriendStatistic>> futureList = executor.submit(new TaskTheBestFriends());
         ArrayList<ModelFriendStatistic> list = new ArrayList<>();
         try {
             list = futureList.get();
@@ -37,13 +37,12 @@ public class FriendStatisticRepository {
     }
 
     class TaskTheBestFriends implements Callable<ArrayList<ModelFriendStatistic>> {
-        private int theWorstMessages;
-        public TaskTheBestFriends(int theWorstMessages) { this.theWorstMessages = theWorstMessages; }
+        public TaskTheBestFriends() {}
 
         @Override
         public ArrayList<ModelFriendStatistic> call() throws Exception {
             ArrayList<ModelFriendStatistic> list = new ArrayList<>();
-            for (ModelFriendStatistic model : friendStatisticDAO.getTheBestFriendsStatistics(theWorstMessages)) {
+            for (ModelFriendStatistic model : friendStatisticDAO.getTheBestFriendsStatistics()) {
                 list.add(setupFriendInformation(model));
             }
             return list;

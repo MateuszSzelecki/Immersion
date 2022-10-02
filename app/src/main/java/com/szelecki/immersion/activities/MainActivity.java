@@ -43,6 +43,7 @@ import com.szelecki.immersion.models.ModelUser;
 import com.szelecki.immersion.viewModels.MainActivityViewModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -90,8 +91,12 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
         initRecyclerViewLanguageStatistics();
         initRecyclerViewFriendStatistics();
 
+        viewModel.addWord("trausers", "spodnie", EnumLanguages.NORWEGIAN.getDescription(), new Date().getTime());
+        viewModel.addWord("tam", "oswojony", EnumLanguages.NORWEGIAN.getDescription(), new Date().getTime());
+        viewModel.addWord("knipe", "ściskać", EnumLanguages.NORWEGIAN.getDescription(), new Date().getTime());
+
         //tytuł toolbaru
-        if (user.getLanguage() != EnumLanguages.DEFAULT) {
+        if (user.getLanguage() != EnumLanguages.DEFAULT && user.getLanguage() != null) {
             toolbar.setTitle(user.getLanguage().getRepresentation());
         }
 
@@ -156,17 +161,14 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
         });
 
         //obserwowanie liveData z listą modeli statystyk najlepszych znajomych
-        viewModel.getInitialTheBestFriendsStatistics(-1).observe(this, new Observer<ArrayList<ModelFriendStatistic>>() {
+        viewModel.getInitialTheBestFriendsStatistics().observe(this, new Observer<ArrayList<ModelFriendStatistic>>() {
             @Override
             public void onChanged(ArrayList<ModelFriendStatistic> modelFriendStatistics) {
-                bestFriends = modelFriendStatistics;
                 int amount = 6 - languages.size();
-                if (bestFriends.size() < amount) {
-                    amount = bestFriends.size();
+                if (modelFriendStatistics.size() < amount) {
+                    amount = modelFriendStatistics.size();
                 }
-                List<ModelFriendStatistic> temp = bestFriends.stream().sorted(Comparator.comparing(ModelFriendStatistic::getMessages)).collect(Collectors.toList());
-                bestFriends.clear();
-                for (int i=1; i<=amount; i++) { bestFriends.add(temp.get(temp.size()-i)); }
+                bestFriends.addAll(modelFriendStatistics.subList(0, amount));
                 friendsAdapter.setFriends(bestFriends);
             }
         });
@@ -215,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements OnClickLanguageIt
         for (ModelLanguageStatistic model : languages) {
             selected.add(model.getName());
         }
+        selected.add(user.getMotherLanguage().getDescription());
         intent.putExtra("selected", selected);
         intent.putExtra("signUp", false);
         intent.putExtra("motherLanguage", false);

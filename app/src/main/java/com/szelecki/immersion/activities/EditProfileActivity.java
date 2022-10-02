@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
@@ -52,7 +53,11 @@ public class EditProfileActivity extends AppCompatActivity {
                 public void run() {
                     introCardView.setVisibility(View.GONE);
                 }
-            }, 4000);
+            }, 3500);
+        }
+
+        for (String string : user.getHobbies()) {
+            Log.d("PLACEHOLDER", string);
         }
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

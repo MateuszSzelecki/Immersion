@@ -5,6 +5,22 @@
     <color name="main_black">#1F1E23</color>
     <color name="main_orange">#FF8F5D</color>
 
+    <color name="category1">#d9ed92</color>
+    <color name="category2">#b5e48c</color>
+    <color name="category3">#99d98c</color>
+    <color name="category4">#76c893</color>
+    <color name="category5">#52b69a</color>
+    <color name="category6">#34a0a4</color>
+    <color name="category7">#168aad</color>
+    <color name="category8">#1a759f</color>
+    <color name="category9">#1e6091</color>
+    <color name="category10">#184e77</color>
+
+    <color name="perfect">#52b69a</color>
+    <color name="almost">#76c893</color>
+    <color name="little">#99d98c</color>
+    <color name="nothing">#d9ed92</color>
+
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="heart_red">#E53935</color>

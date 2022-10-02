@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.szelecki.immersion.R;
@@ -53,33 +55,25 @@ public class FlashcardsAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.flashcards_card_item, container, false);
 
-        RelativeLayout wordCardItem = view.findViewById(R.id.wordFlashcardsCardItem);
-        RelativeLayout meaningCardItem = view.findViewById(R.id.meaningFlashcardsCardItem);
+        CardView cardView = view.findViewById(R.id.cardViewFlashcard);
+        CardView cardViewRate = view.findViewById(R.id.cardViewRateKnowFlashcard);
         TextView textViewWord = view.findViewById(R.id.textViewFlashcardsWord);
-        TextView textViewMeaning = view.findViewById(R.id.textViewFlashcardsMeaning);
-        Button buttonPerfect = view.findViewById(R.id.buttonFlashcardsPerfect);
-        Button buttonAlmost = view.findViewById(R.id.buttonFlashcardsAlmost);
-        Button buttonLittle = view.findViewById(R.id.buttonFlashcardsLittle);
-        Button buttonNothing = view.findViewById(R.id.buttonFlashcardsNothing);
+        ImageView buttonPerfect = view.findViewById(R.id.buttonFlashcardsPerfect);
+        ImageView buttonAlmost = view.findViewById(R.id.buttonFlashcardsAlmost);
+        ImageView buttonLittle = view.findViewById(R.id.buttonFlashcardsLittle);
+        ImageView buttonNothing = view.findViewById(R.id.buttonFlashcardsNothing);
 
         ModelWord model = models.get(position);
-
         textViewWord.setText(model.getWord());
-        textViewMeaning.setText(model.getMeaning());
 
-        wordCardItem.setOnClickListener(new View.OnClickListener() {
+        cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                wordCardItem.setVisibility(View.GONE);
-                meaningCardItem.setVisibility(View.VISIBLE);
-            }
-        });
-
-        meaningCardItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                meaningCardItem.setVisibility(View.GONE);
-                wordCardItem.setVisibility(View.VISIBLE);
+                if (textViewWord.getText().equals(model.getWord())) {
+                    textViewWord.setText(model.getMeaning());
+                } else {
+                    textViewWord.setText(model.getWord());
+                }
             }
         });
 
@@ -87,6 +81,7 @@ public class FlashcardsAdapter extends PagerAdapter {
             @Override
             public void onClick(View view) {
                 listener.setupLevel(position, 4);
+                cardViewRate.setVisibility(View.GONE);
             }
         });
 
@@ -94,6 +89,7 @@ public class FlashcardsAdapter extends PagerAdapter {
             @Override
             public void onClick(View view) {
                 listener.setupLevel(position, 3);
+                cardViewRate.setVisibility(View.GONE);
             }
         });
 
@@ -101,6 +97,7 @@ public class FlashcardsAdapter extends PagerAdapter {
             @Override
             public void onClick(View view) {
                 listener.setupLevel(position, 2);
+                cardViewRate.setVisibility(View.GONE);
             }
         });
 
@@ -108,6 +105,7 @@ public class FlashcardsAdapter extends PagerAdapter {
             @Override
             public void onClick(View view) {
                 listener.setupLevel(position, 1);
+                cardViewRate.setVisibility(View.GONE);
             }
         });
 

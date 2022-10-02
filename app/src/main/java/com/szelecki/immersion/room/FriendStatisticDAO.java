@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.szelecki.immersion.models.ModelFriendStatistic;
+import com.szelecki.immersion.models.ModelLanguageStatistic;
 
 import java.util.List;
 
@@ -22,8 +23,8 @@ public interface FriendStatisticDAO {
     @Delete
     public void deleteFriendStatistic(ModelFriendStatistic modelFriendStatistic);
 
-    @Query("select * from friend_statistics where messages > :theWorstMessages")
-    public List<ModelFriendStatistic> getTheBestFriendsStatistics(int theWorstMessages);
+    @Query("select * from friend_statistics ORDER BY messages DESC limit 6") //ASC - rosnąco
+    public List<ModelFriendStatistic> getTheBestFriendsStatistics();
 
     @Query("select * from friend_statistics where language ==:language")
     public List<ModelFriendStatistic> getFriendsStatisticsForLanguage(String language);

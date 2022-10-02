@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.szelecki.immersion.R;
+import com.szelecki.immersion.presenters.EditProfilePresenter;
+import com.szelecki.immersion.presenters.LoginPresenter;
 import com.szelecki.immersion.utils.TimeAndLanguage;
 import com.szelecki.immersion.adapters.AddLanguageAdapter;
 import com.szelecki.immersion.adapters.OnClickLanguageItemInterface;
@@ -23,6 +25,7 @@ import com.szelecki.immersion.models.EnumLanguages;
 import com.szelecki.immersion.models.ModelLanguageStatistic;
 import com.szelecki.immersion.models.ModelUser;
 import com.szelecki.immersion.viewModels.AddLanguageActivityViewModel;
+import com.szelecki.immersion.viewModels.EditCategoriesActivityViewModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,7 +43,9 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
     boolean signUp, motherLanguage, addLanguage;
 
     AddLanguageActivityViewModel viewModel;
+    EditCategoriesActivityViewModel viewModelCategories;
     ModelUser user;
+    EditProfilePresenter presenter;
 
     AddLanguageAdapter adapter;
 
@@ -56,7 +61,9 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
         introAddLanguage = findViewById(R.id.introAddLanguageAddLanguage);
 
         viewModel = new ViewModelProvider(this).get(AddLanguageActivityViewModel.class);
+        viewModelCategories = new ViewModelProvider(this).get(EditCategoriesActivityViewModel.class);
         user = ModelUser.getInstance();
+        presenter = new EditProfilePresenter(AddLanguageActivity.this);
 
         signUp = getIntent().getBooleanExtra("signUp", false);
         motherLanguage = getIntent().getBooleanExtra("motherLanguage", false);
@@ -64,6 +71,7 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
 
         if (signUp) {
             if (motherLanguage && !addLanguage) {
+                viewModelCategories.addAllCategories();
                 confirmButton.setVisibility(View.GONE);
                 introMotherLanguage.setVisibility(View.VISIBLE);
                 Handler handler = new Handler();
@@ -72,7 +80,7 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
                     public void run() {
                         introMotherLanguage.setVisibility(View.GONE);
                     }
-                }, 4000);
+                }, 3500);
             } else if (!motherLanguage && addLanguage) {
                 introAddLanguage.setVisibility(View.VISIBLE);
                 Handler handler = new Handler();
@@ -81,16 +89,18 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
                     public void run() {
                         introAddLanguage.setVisibility(View.GONE);
                     }
-                }, 4000);
+                }, 3500);
             }
         }
 
         languages = new ArrayList<>(); representations = new ArrayList<>(); selected = new ArrayList<>(); chosen = new ArrayList<>();
         selected = getIntent().getStringArrayListExtra("selected");
-        initLanguages(); //inicjowanie listy języków do RecyclerView
+        initLanguages();
 
         if (signUp) {
             selected.clear();
+        } else {
+            selected.remove(user.getMotherLanguage().getDescription());
         }
 
         String textToButton = String.valueOf(selected.size()) + "/4";
@@ -109,22 +119,29 @@ public class AddLanguageActivity extends AppCompatActivity implements OnClickLan
                 if (chosen.size() > 0) { //jeśli wybrano jakieś języki
                     ArrayList<String> tempLanguages = new ArrayList<>();
                     for (int index : chosen) {
-                        viewModel.addLanguageStatistic(languages.get(index).getName(), new Date().getTime());
+                        viewModel.addLanguageStatistic(languages.get(index).getName(), new Date().getTime(), user.getAuthentication());
                         tempLanguages.add(languages.get(index).getName());
                     }
                     user.setLanguages(tempLanguages);
                     user.setLanguage(TimeAndLanguage.setupChangedLanguage(languages.get(chosen.get(0)).getName()));
-                }
-                if (signUp) {
-                    if (chosen.size() > 0) {
-                        Intent intent = new Intent(AddLanguageActivity.this, EditProfileActivity.class);
+                    if (signUp) {
+                        Intent intent = new Intent(AddLanguageActivity.this, EditCategoriesActivity.class);
                         intent.putExtra("signUp", true);
+                        intent.putExtra("selected", new ArrayList<>());
+                        intent.putExtra("selectedId", new ArrayList<>());
                         startActivity(intent);
                     } else {
-                        Toast.makeText(AddLanguageActivity.this, "You have to select at least 1 language!", Toast.LENGTH_SHORT).show();
+                        ArrayList<String> userLanguages = new ArrayList<>();
+                        userLanguages.addAll(selected); userLanguages.addAll(tempLanguages);
+                        presenter.editLanguagesInFirestore(userLanguages, new EditProfilePresenter.OnSuccessfulEditUser() {
+                            @Override
+                            public void userEdited() {
+                                startActivity(new Intent(AddLanguageActivity.this, MainActivity.class));
+                            }
+                        });
                     }
                 } else {
-                    startActivity(new Intent(AddLanguageActivity.this, MainActivity.class));
+                    Toast.makeText(AddLanguageActivity.this, "You have to select at least 1 language!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

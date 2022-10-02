@@ -45,7 +45,7 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
     RecyclerView mainRecyclerView, recyclerViewCategories;
     EditText editTextWriteSth;
     RelativeLayout slideAddPost;
-    TextView selectImageButton, publishButton, helloText;
+    TextView selectImageButton, publishButton, helloText, firstnameText;
     View yellowView;
 
     ArrayList<ModelPostFromFirebase> posts;
@@ -72,11 +72,14 @@ public class FragmentHome extends Fragment implements HomeFragmentPresenterInter
         selectImageButton = view.findViewById(R.id.selectImageHomeAddPost);
         publishButton = view.findViewById(R.id.publishHomeAddPost);
         helloText = view.findViewById(R.id.helloTextView);
+        firstnameText = view.findViewById(R.id.firstnameTextView);
         yellowView = view.findViewById(R.id.yellowView);
 
         viewModel = new ViewModelProvider(this).get(HomeFragmentViewModel.class);
         user = ModelUser.getInstance();
         presenter = new HomeFragmentPresenter(this, getContext());
+
+        firstnameText.setText(user.getFirstname());
 
         posts = new ArrayList<>();
         presenter.getNextTenPosts();

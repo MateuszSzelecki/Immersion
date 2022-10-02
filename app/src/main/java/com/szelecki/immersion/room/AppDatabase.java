@@ -8,16 +8,21 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.szelecki.immersion.models.ModelCategoryStatistic;
 import com.szelecki.immersion.models.ModelFriendStatistic;
 import com.szelecki.immersion.models.ModelLanguageStatistic;
 import com.szelecki.immersion.models.ModelWord;
 
-@Database(entities = {ModelLanguageStatistic.class, ModelFriendStatistic.class, ModelWord.class}, version = 7)
+import java.util.ArrayList;
+import java.util.Arrays;
+
+@Database(entities = {ModelLanguageStatistic.class, ModelFriendStatistic.class, ModelWord.class, ModelCategoryStatistic.class}, version = 9)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract LanguageStatisticDAO getLanguageStatisticDAO();
     public abstract FriendStatisticDAO getFriendStatisticDAO();
     public abstract WordDAO getWordDAO();
+    public abstract CategoryStatisticDAO getCategoryStatisticDAO();
 
     private static AppDatabase instance;
 

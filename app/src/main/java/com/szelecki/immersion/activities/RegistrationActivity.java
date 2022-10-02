@@ -69,9 +69,8 @@ public class RegistrationActivity extends AppCompatActivity {
             public void run() {
                 if (langIndex == 11) { langIndex = 0; }
                 textViewLanguages.setText(languages.get(langIndex));
-                Log.d("PLACEHOLDER", languages.get(langIndex));
                 langIndex ++;
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 2000);
             }
         };
         languagesRunnable.run();

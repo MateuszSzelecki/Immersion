@@ -3,6 +3,144 @@
     
     <string-array name="tech">
         <item>computer</item>
+        <item>gadgets</item>
+        <item>mobile app</item>
+    </string-array>
+
+    <string-array name="gaming">
+        <item>esports</item>
+    </string-array>
+
+    <string-array name="health">
+        <item>psychology</item>
+        <item>food</item>
+        <item>sex</item>
+        <item>relationships</item>
+        <item>diets</item>
+        <item>fitness</item>
+    </string-array>
+
+    <string-array name="travel">
+        <item>Europe</item>
+        <item>Asia</item>
+        <item>United States</item>
+        <item>Africa</item>
+        <item>Central South America</item>
+        <item>Australia</item>
+        <item>Polar regions</item>
+    </string-array>
+
+    <string-array name="football">
+        <item>Bundesliga</item>
+        <item>Ligue 1</item>
+        <item>Premier League</item>
+        <item>LaLiga</item>
+        <item>Serie A</item>
+    </string-array>
+
+    <string-array name="sports">
+        <item>basketball</item>
+        <item>cycling</item>
+        <item>formula one</item>
+        <item>golf</item>
+        <item>martial arts</item>
+        <item>rugby</item>
+        <item>tennis</item>
+        <item>extreme sports</item>
+        <item>horse racing</item>
+        <item>body building</item>
+        <item>ice hockey</item>
+        <item>betting</item>
+        <item>motor</item>
+        <item>boats</item>
+    </string-array>
+
+    <string-array name="film">
+        <item>action</item>
+        <item>comedy</item>
+        <item>documentary</item>
+        <item>drama</item>
+        <item>fantasy</item>
+        <item>horror</item>
+        <item>family</item>
+        <item>military</item>
+        <item>thrillers</item>
+        <item>romance</item>
+        <item>science-fiction</item>
+        <item>westerns</item>
+    </string-array>
+
+    <string-array name="TVseries">
+        <item>action</item>
+        <item>comedy</item>
+        <item>documentary</item>
+        <item>drama</item>
+        <item>fantasy</item>
+        <item>horror</item>
+        <item>family</item>
+        <item>military</item>
+        <item>thrillers</item>
+        <item>romance</item>
+        <item>science-fiction</item>
+        <item>westerns</item>
+        <item>reality TV</item>
+    </string-array>
+
+    <string-array name="book">
+        <item>business</item>
+        <item>comics</item>
+        <item>education</item>
+        <item>history</item>
+        <item>law</item>
+        <item>literature</item>
+        <item>mystery</item>
+        <item>romance</item>
+        <item>fantasy</item>
+        <item>travel</item>
+        <item>biographies</item>
+        <item>engineering</item>
+        <item>health</item>
+        <item>humor</item>
+        <item>medical</item>
+        <item>teen</item>
+    </string-array>
+
+    <string-array name="music">
+        <item>hiphop</item>
+        <item>pop</item>
+        <item>indie</item>
+        <item>rock</item>
+        <item>electronic</item>
+        <item>chill</item>
+        <item>party</item>
+        <item>latin</item>
+        <item>romance</item>
+        <item>metal</item>
+        <item>jazz</item>
+        <item>classical</item>
+        <item>acoustic</item>
+        <item>soul</item>
+        <item>instrumental</item>
+        <item>punk</item>
+        <item>blues</item>
+        <item>alternative</item>
+        <item>afro</item>
+        <item>funk</item>
+        <item>country</item>
+    </string-array>
+
+    <string-array name="business">
+        <item>crypto</item>
+        <item>investing</item>
+        <item>industries</item>
+        <item>start up</item>
+        <item>marketing</item>
+    </string-array>
+
+    <string-array name="law">
+        <item>criminal law</item>
+        <item>international law</item>
+        <item>family health law</item>
     </string-array>
     
 </resources>

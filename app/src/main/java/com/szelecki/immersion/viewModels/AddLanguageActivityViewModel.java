@@ -16,7 +16,7 @@ public class AddLanguageActivityViewModel extends AndroidViewModel {
         languageStatisticRepository = new LanguageStatisticRepository(application);
     }
 
-    public void addLanguageStatistic(String name, long startedAndRecently) {
+    public void addLanguageStatistic(String name, long startedAndRecently, String authentication) {
         languageStatisticRepository.insertLanguageStatistic(name, startedAndRecently, startedAndRecently);
     }
 

@@ -10,7 +10,7 @@
         android:id="@+id/textViewNavigationHeader1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:text="Immersion in"
         android:textColor="?attr/colorPrimary"
         android:textSize="22sp"

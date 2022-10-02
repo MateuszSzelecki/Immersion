@@ -3,6 +3,8 @@ package com.szelecki.immersion.utils;
 import com.szelecki.immersion.R;
 import com.szelecki.immersion.models.EnumLanguages;
 
+import java.util.ArrayList;
+
 public class TimeAndLanguage {
 
     public static final long SECOND_MILLIS = 1000;
@@ -101,5 +103,21 @@ public class TimeAndLanguage {
             case "swedish": return EnumLanguages.SWEDISH;
             default: return EnumLanguages.DEFAULT;
         }
+    }
+
+    public static ArrayList<String> getArrayOfAllLanguages() {
+        ArrayList<String> allLanguages = new ArrayList<>();
+        allLanguages.add(EnumLanguages.DANISH.getDescription());
+        allLanguages.add(EnumLanguages.ENGLISH.getDescription());
+        allLanguages.add(EnumLanguages.FINNISH.getDescription());
+        allLanguages.add(EnumLanguages.FRENCH.getDescription());
+        allLanguages.add(EnumLanguages.GERMAN.getDescription());
+        allLanguages.add(EnumLanguages.GREEK.getDescription());
+        allLanguages.add(EnumLanguages.ITALIAN.getDescription());
+        allLanguages.add(EnumLanguages.NORWEGIAN.getDescription());
+        allLanguages.add(EnumLanguages.POLISH.getDescription());
+        allLanguages.add(EnumLanguages.SPANISH.getDescription());
+        allLanguages.add(EnumLanguages.SWEDISH.getDescription());
+        return allLanguages;
     }
 }
