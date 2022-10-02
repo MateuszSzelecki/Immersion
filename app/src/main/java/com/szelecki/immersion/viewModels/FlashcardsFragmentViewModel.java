@@ -43,7 +43,7 @@ public class FlashcardsFragmentViewModel extends AndroidViewModel {
         wordRepository.updateWord(updatedModel, recently, level);
     }
 
-//    public void deleteWord(String name, String language) {
-//        wordRepository.deleteWord(name, language);
-//    }
+    public void deleteWord(String name, String language) {
+        wordRepository.deleteWord(name, language);
+    }
 }
